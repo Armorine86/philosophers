@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/01 13:58:12 by mmondell         ###   ########.fr        #
+#    Updated: 2021/09/03 12:41:50 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ INCLUDE_DIR		= include/
 LIBFT_DIR		= libft/
 
 ## ----- SOURCE FILES ----- ##
-SRCS_FILES		= philosophers.c
+SRCS_FILES		= philosophers.c init_philos.c
 ## ----- BONUS SOURCE FILES ----- ##
 #*B_SRCS_FILES	= 
 
