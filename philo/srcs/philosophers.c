@@ -6,15 +6,59 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 11:05:17 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/03 17:48:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	error_exit(void)
+bool	check_args(char **argv, int *error)
 {
-	
+	int	i;
+	int	j;
+
+	i = 0;
+	while (argv[i])
+	{
+		j = 0;
+		if (argv[i][j] == '+')
+			j++;
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j]))
+			{
+				*error = 1;
+				return (false);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+char	**split_argv(char *str, int *free_me)
+{
+	char	**ret;
+
+	ret = ft_split(str, ' ');
+	*free_me = 1;
+	return (ret);
+}
+
+int	get_count(int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	if (argc > 2)
+		i = argc - 1;
+	else
+	{
+		while (argv[i])
+			i++;
+	}
+	return (i);
 }
 
 void	usage(char *argv)
@@ -29,19 +73,28 @@ void	usage(char *argv)
 	printf(" [(OPTIONAL) Number of meals]\033[0m\n");
 	printf("\n\033[35m**Arguments are in milliseconds");
 	printf(" I.E: 200 milliseconds = 2 seconds**\n");
-	printf("Values must be greater than 0\n");
+	printf("Values must be greater than 1\n");
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo philo;
-	
-	if (argc < 4)
-		usage(argv[0]);
+	t_philo	philo;
+	int		count;	
+	int		free_me;
+	int		error;
+
+	free_me = 0;
+	error = 0;
 	argv++;
 	if (argc == 2)
-		argv = ft_split(argv[1], ' ');
-	if (!init_philos(&philo, argv))
-		error_exit();
+		argv = split_argv(argv[0], &free_me);
+	count = get_count(argc, argv);
+	if (count < 4)
+		usage(argv[0]);
+	if (!check_args(argv, &error) || !init_philos(&philo, argv, count, &error))
+		error_exit(error);
+	if (free_me)
+		free_tab(argv);
+	free_all_exit(&philo);
 	return (0);
 }

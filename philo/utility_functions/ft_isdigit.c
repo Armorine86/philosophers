@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 17:59:15 by mmondell         ###   ########.fr       */
+/*   Created: 2021/03/17 15:01:31 by mmondell          #+#    #+#             */
+/*   Updated: 2021/09/03 13:21:49 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "utils.h"
 
-void	free_all_exit(t_philo **f)
+int	ft_isdigit(int c)
 {
-	free((*f)->config);
-	free((*f));
-}
-
-void	free_tab(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv);
-}
-
-void	error_exit(int error)
-{
-	if (error == 1)
-		ft_putstr_fd("INVALID ARGUMENT", 2);
-	else if (error == 2)
-		ft_putstr_fd("MALLOC FAILED", 2);
-	exit (EXIT_FAILURE);
+	return (c >= '0' && c <= '9');
 }

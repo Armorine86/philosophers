@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 17:59:15 by mmondell         ###   ########.fr       */
+/*   Created: 2021/05/06 15:02:55 by mmondell          #+#    #+#             */
+/*   Updated: 2021/09/03 12:54:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "utils.h"
 
-void	free_all_exit(t_philo **f)
+void	ft_putchar_fd(char c, int fd)
 {
-	free((*f)->config);
-	free((*f));
-}
-
-void	free_tab(char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (argv[i])
-		free(argv[i++]);
-	free(argv);
-}
-
-void	error_exit(int error)
-{
-	if (error == 1)
-		ft_putstr_fd("INVALID ARGUMENT", 2);
-	else if (error == 2)
-		ft_putstr_fd("MALLOC FAILED", 2);
-	exit (EXIT_FAILURE);
+	write(fd, &c, 1);
 }

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/06 15:00:16 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 10:52:23 by mmondell         ###   ########.fr       */
+/*   Created: 2021/05/04 11:55:47 by mmondell          #+#    #+#             */
+/*   Updated: 2021/09/03 12:56:01 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putstr_fd(char *s, int fd)
+#include "philo.h"
+
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*temp;
 
 	i = 0;
-	if (s != 0)
+	temp = s;
+	while (i < n)
 	{
-		while (s[i])
-		{
-			ft_putchar_fd(s[i], fd);
-			i++;
-		}
+		temp[i] = (unsigned char)c;
+		i++;
 	}
+	return (s);
 }

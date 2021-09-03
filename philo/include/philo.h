@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 11:05:03 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/03 17:58:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include "utils.h"
 
 enum e_state
 {
@@ -33,7 +35,7 @@ typedef struct s_settings
 	unsigned int	total_philo;
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
-	unsigned int	time_think;
+	unsigned int	time_die;
 	unsigned int 	total_meals;
 }	t_settings;
 
@@ -45,15 +47,12 @@ typedef struct s_philo
 	t_settings		*config;
 }	t_philo;
 
-bool	init_philos(t_philo *p, char **argv);
+bool	init_philos(t_philo *p, char **argv, int argc, int *error);
 
+/* UTILITIES */
 
-/* UTILITIES FUNCTIONS */
-
-int		ft_atoi(const char *str);
-char	**ft_split(const char *s, char c);
-void	error_exit(void);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
+void	error_exit(int error);
+void	free_all_exit(t_philo **f);
+void	free_tab(char **argv);
 
 #endif

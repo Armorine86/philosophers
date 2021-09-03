@@ -6,12 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 21:27:06 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 11:04:48 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/03 12:59:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdbool.h>
+#include "philo.h"
 
 static size_t	ft_count_words(const char *s, const char c)
 {
