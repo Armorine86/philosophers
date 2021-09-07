@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 17:48:29 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 11:04:57 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**split_argv(char *str, int *free_me)
 	return (ret);
 }
 
-int	get_count(int argc, char **argv)
+int	get_parameters_count(int argc, char **argv)
 {
 	int	i;
 
@@ -78,7 +78,7 @@ void	usage(char *argv)
 
 int	main(int argc, char **argv)
 {
-	t_philo	philo;
+	t_philo	*philo;
 	int		count;	
 	int		free_me;
 	int		error;
@@ -88,13 +88,14 @@ int	main(int argc, char **argv)
 	argv++;
 	if (argc == 2)
 		argv = split_argv(argv[0], &free_me);
-	count = get_count(argc, argv);
+	count = get_parameters_count(argc, argv);
 	if (count < 4)
 		usage(argv[0]);
-	if (!check_args(argv, &error) || !init_philos(&philo, argv, count, &error))
+	if (!check_args(argv, &error))
 		error_exit(error);
+	philo = init_philos(argv, count, &error);
 	if (free_me)
 		free_tab(argv);
-	free_all_exit(&philo);
+	free_all_exit(philo);
 	return (0);
 }

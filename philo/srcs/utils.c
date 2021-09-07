@@ -6,17 +6,27 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 17:59:15 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 12:49:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include "utils.h"
 
-void	free_all_exit(t_philo **f)
+int64_t	timer(void)
 {
-	free((*f)->config);
-	free((*f));
+	struct timeval	time;
+	int64_t			s1;
+	int64_t			s2;
+		
+	gettimeofday(&time, NULL);
+	s1 = (int64_t)time.tv_sec / 1000;
+	s2 = time.tv_usec * 1000;
+	return(s1 + s2);
+}
+
+void	free_all_exit(t_philo *p)
+{
+	free(p);
 }
 
 void	free_tab(char **argv)

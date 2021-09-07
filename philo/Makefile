@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/03 16:42:26 by mmondell         ###   ########.fr        #
+#    Updated: 2021/09/07 08:23:43 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,6 @@ fclean: clean
 #*	$(RM) $(B_NAME) $(OBJ_DIR)
 
 
-re: fclean all bonus
+re: fclean all #bonus
 
 .PHONY: all clean fclean re

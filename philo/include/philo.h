@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 17:58:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 12:41:18 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,44 @@
 
 enum e_state
 {
-	e_sleep,
-	e_think,
-	e_eat,
-	e_die,
+	s_sleep,
+	s_think,
+	s_eat,
+	s_die,
 };
 
 typedef struct s_settings
 {
-	unsigned int	total_philo;
+	int				total_philo;
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
 	unsigned int	time_die;
 	unsigned int 	total_meals;
 }	t_settings;
 
+typedef struct s_info
+{
+	int64_t	clock;
+	int64_t	last_meal;
+	int		left_fork;
+	int		right_fork;	
+	int		id;
+	int		state[4];
+}	t_info;
+
 typedef struct s_philo
 {
-	unsigned int	id;
-	unsigned int	clock;
-	int				state[4];
-	t_settings		*config;
+	t_settings	config;
+	t_info		info;
 }	t_philo;
 
-bool	init_philos(t_philo *p, char **argv, int argc, int *error);
+t_philo			*init_philos(char **argv, int argc, int *error);
 
 /* UTILITIES */
 
-void	error_exit(int error);
-void	free_all_exit(t_philo **f);
-void	free_tab(char **argv);
+void			error_exit(int error);
+void			free_all_exit(t_philo *p);
+void			free_tab(char **argv);
+int64_t			timer(void);
 
 #endif
