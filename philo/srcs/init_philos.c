@@ -6,13 +6,13 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 15:34:10 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:39:55 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_settings(t_philo *p,char **argv, int arg_count)
+void	init_settings(t_philo *p, char **argv, int arg_count)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ t_philo	*init_philos(char **argv, int *error, int count)
 	t_philo		*p;
 	int			philo_num;
 	int			i;
-	
+
 	i = 0;
 	philo_num = ft_atoi(argv[0]);
 	p = ft_calloc(0, sizeof(t_philo) * philo_num);
@@ -44,7 +44,6 @@ t_philo	*init_philos(char **argv, int *error, int count)
 		p[i].info.timer = timer();
 		p[i].info.left_fork = 0;
 		p[i].info.right_fork = 0;
-		printf("philo id: %d time: %u fork: %d\n", p[i].info.id, p[i].info.timer, p[i].info.left_fork);
 		i++;
 	}
 	return (p);

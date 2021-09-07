@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 13:47:39 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:40:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ unsigned int	timer(void)
 	struct timeval	time;
 	unsigned int	s1;
 	unsigned int	s2;
-		
+
 	gettimeofday(&time, NULL);
 	s1 = time.tv_sec * 1000;
 	s2 = time.tv_usec / 1000;
-	return(s1 + s2);
+	return (s1 + s2);
 }
 
 void	free_all_exit(t_philo *p)

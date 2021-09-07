@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 14:29:52 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:40:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	usage(char *argv)
 int	main(int argc, char **argv)
 {
 	t_philo		*philo;
-	int		count;	
-	int		free_me;
-	int		error;
+	int			count;	
+	int			free_me;
+	int			error;
 
 	free_me = 0;
 	error = 0;

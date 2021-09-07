@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 15:30:31 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:39:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_settings
 	unsigned int	time_die;
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
-	unsigned int 	total_meals;
+	unsigned int	total_meals;
 }	t_settings;
 
 typedef struct s_info
