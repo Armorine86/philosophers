@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 13:24:08 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:30:31 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ enum e_state
 typedef struct s_settings
 {
 	int				total_philo;
+	unsigned int	time_die;
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
-	unsigned int	time_die;
 	unsigned int 	total_meals;
 }	t_settings;
 
 typedef struct s_info
 {
-	unsigned int	clock;
+	unsigned int	timer;
 	unsigned int	last_meal;
 	int				left_fork;
 	int				right_fork;	
@@ -51,11 +51,12 @@ typedef struct s_info
 
 typedef struct s_philo
 {
-	t_settings	config;
+	t_settings	settings;
 	t_info		info;
 }	t_philo;
 
-t_philo			*init_philos(char **argv, int argc, int *error);
+t_philo			*init_philos(char **argv, int *error, int count);
+void			init_settings(t_philo *p, char **argv, int arg_count);
 
 /* UTILITIES */
 

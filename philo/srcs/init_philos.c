@@ -6,47 +6,45 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 12:43:34 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:34:10 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_settings	*init_settings(char **argv, int arg_count)
+void	init_settings(t_philo *p,char **argv, int arg_count)
 {
-	t_settings	*s;
-	int			i;
+	int	i;
 
-	s = ft_calloc(0, sizeof(t_settings));
 	i = 0;
-	s->total_philo = ft_atoi(argv[i++]);
-	s->time_die = ft_atoi(argv[i++]);
-	s->time_eat = ft_atoi(argv[i++]);
-	s->time_sleep = ft_atoi(argv[i++]);
+	p->settings.total_philo = ft_atoi(argv[i++]);
+	p->settings.time_die = ft_atoi(argv[i++]);
+	p->settings.time_eat = ft_atoi(argv[i++]);
+	p->settings.time_sleep = ft_atoi(argv[i++]);
 	if (arg_count == 5)
-		s->total_meals = ft_atoi(argv[i]);
-	return (s);
+		p->settings.total_meals = ft_atoi(argv[i]);
 }
 
-t_philo	*init_philos(char **argv, int arg_count, int *error)
+t_philo	*init_philos(char **argv, int *error, int count)
 {
 	t_philo		*p;
-	t_settings	*s;
+	int			philo_num;
+	int			i;
 	
-	int		philo_num;
-	int		i;
-	i = 1;
+	i = 0;
 	philo_num = ft_atoi(argv[0]);
 	p = ft_calloc(0, sizeof(t_philo) * philo_num);
-	s = init_settings(argv, arg_count);
-	if (!p || !s)
+	init_settings(p, argv, count);
+	if (!p)
 		*error = 2;
-	while (i <= philo_num)
+	while (i < philo_num)
 	{
 		p[i].info.id = i;
 		p[i].info.state[s_think] = 1;
-		p[i].info.clock = timer();
-		printf("philo id: %d time: %lld \n", p[i].info.id, p[i].info.clock);
+		p[i].info.timer = timer();
+		p[i].info.left_fork = 0;
+		p[i].info.right_fork = 0;
+		printf("philo id: %d time: %u fork: %d\n", p[i].info.id, p[i].info.timer, p[i].info.left_fork);
 		i++;
 	}
 	return (p);
