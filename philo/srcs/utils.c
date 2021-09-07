@@ -6,21 +6,21 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 12:49:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 13:25:34 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int64_t	timer(void)
+unsigned int	timer(void)
 {
 	struct timeval	time;
 	int64_t			s1;
 	int64_t			s2;
 		
 	gettimeofday(&time, NULL);
-	s1 = (int64_t)time.tv_sec / 1000;
-	s2 = time.tv_usec * 1000;
+	s1 = (int64_t)time.tv_sec * 1000;
+	s2 = time.tv_usec / 1000;
 	return(s1 + s2);
 }
 

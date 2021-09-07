@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 12:41:18 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/07 13:24:08 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ typedef struct s_settings
 
 typedef struct s_info
 {
-	int64_t	clock;
-	int64_t	last_meal;
-	int		left_fork;
-	int		right_fork;	
-	int		id;
-	int		state[4];
+	unsigned int	clock;
+	unsigned int	last_meal;
+	int				left_fork;
+	int				right_fork;	
+	int				id;
+	int				state[4];
 }	t_info;
 
 typedef struct s_philo
@@ -62,6 +62,6 @@ t_philo			*init_philos(char **argv, int argc, int *error);
 void			error_exit(int error);
 void			free_all_exit(t_philo *p);
 void			free_tab(char **argv);
-int64_t			timer(void);
+unsigned int	timer(void);
 
 #endif
