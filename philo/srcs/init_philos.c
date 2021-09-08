@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 14:51:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/08 15:21:59 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,21 @@ void	init_settings(t_philo *p, char **argv, int arg_count)
 
 t_philo	*init_philos(char **argv, int *error, int count)
 {
+	t_info		*info;
 	t_philo		*p;
 	int			philo_num;
 	int			i;
 
 	i = 0;
 	philo_num = ft_atoi(argv[0]);
-	p = ft_calloc(0, sizeof(t_philo) * philo_num);
+	p = ft_calloc(0, sizeof(t_philo));
+	info = ft_calloc(0, sizeof(t_info) * philo_num);
 	init_settings(p, argv, count);
 	if (!p)
 		*error = 2;
 	while (i < philo_num)
 	{
-		p[i].info.id = i;
-		p[i].info.state[s_think] = 1;
-		p[i].info.timer = timer();
-		p[i].info.left_fork = 0;
-		p[i].info.right_fork = 0;
+		
 		i++;
 	}
 	return (p);
