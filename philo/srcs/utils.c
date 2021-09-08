@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 15:40:46 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/08 14:43:35 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ unsigned int	timer(void)
 
 void	free_all_exit(t_philo *p)
 {
+	free(p->fork_mutex);
 	free(p);
 }
 

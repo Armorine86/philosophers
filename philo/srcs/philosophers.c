@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/07 15:40:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/08 14:48:25 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,10 @@ int	main(int argc, char **argv)
 	if (!check_args(argv, &error))
 		error_exit(error);
 	philo = init_philos(argv, &error, count);
+	init_mutex(philo);
+	count = ft_atoi(argv[0]);
+	create_threads(philo, count);
 	if (free_me)
 		free_tab(argv);
 	free_all_exit(philo);
-	return (0);
 }
