@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 15:10:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/08 15:33:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,15 @@ typedef struct s_info
 
 typedef struct s_philo
 {
-	t_settings			settings;
+	t_settings			*settings;
 	t_info				info;
 	pthread_mutex_t		*fork_mutex;
 }	t_philo;
 
-t_philo			*init_philos(char **argv, int *error, int count);
+t_settings		*init_settings(char **argv, int arg_count);
+t_philo			*init_structs(char **argv, int *error, int count);
 void			init_mutex(t_philo *p);
 void			*meal_routine(void	*philo);
-void			init_settings(t_philo *p, char **argv, int arg_count);
 void			create_threads(t_philo *p, int total_philo);
 
 /* UTILITIES */
