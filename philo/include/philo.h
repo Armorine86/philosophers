@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/01 13:54:43 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 15:33:33 by mmondell         ###   ########.fr       */
+/*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
+/*   Updated: 2021/09/08 15:45:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ typedef struct s_info
 {
 	unsigned int	timer;
 	unsigned int	last_meal;
+	int				fork;
 	int				id;
-	int				left_fork;
-	int				right_fork;	
 	int				state[4];
 }	t_info;
 
@@ -58,6 +57,8 @@ typedef struct s_philo
 	t_settings			*settings;
 	t_info				info;
 	pthread_mutex_t		*fork_mutex;
+	int					left_fork;
+	int					right_fork;	
 }	t_philo;
 
 t_settings		*init_settings(char **argv, int arg_count);
