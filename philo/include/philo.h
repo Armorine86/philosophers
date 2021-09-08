@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 15:45:29 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/08 15:53:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_info
 typedef struct s_philo
 {
 	t_settings			*settings;
-	t_info				info;
+	t_info				*info;
 	pthread_mutex_t		*fork_mutex;
 	int					left_fork;
 	int					right_fork;	

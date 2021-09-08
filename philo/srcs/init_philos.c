@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 15:46:48 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/08 15:53:26 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,23 @@ void	create_threads(t_philo *p, int total_philo)
 		pthread_join(thread_id[i], NULL);
 }
 
-void	init_philo_info(t_philo *p)
+
+
+t_info	*init_philo_info(t_philo *p)
 {
+	t_info	*info;
 	int	i;
 
+	info = ft_calloc(0, sizeof(t_info) * p->settings->total_philo);
 	i = 0;
 	while (i < p->settings->total_philo)
 	{
-		p[i].info.id = i;
-		p[i].info.state[s_think] = 1;
-		p[i].info.timer = timer();
-		p[i].info.left_fork = 0;
-		p[i].info.right_fork = 0;
+		info[i].id = i;
+		info[i].state[s_think] = 1;
+		info[i].timer = timer();
 		i++;
 	}
+	return (info);
 }
 
 t_settings	*init_settings(char **argv, int arg_count)
@@ -61,6 +64,7 @@ t_settings	*init_settings(char **argv, int arg_count)
 
 t_philo	*init_structs(char **argv, int *error, int count)
 {
+	t_info		*info;
 	t_settings	*s;
 	t_philo		*p;
 	int			philo_num;
@@ -74,6 +78,7 @@ t_philo	*init_structs(char **argv, int *error, int count)
 	free(s);
 	if (!p)
 		*error = 2;
-	init_philo_info(p);
+	info = init_philo_info(p);
+	p->info = (t_info *)info;
 	return (p);
 }
