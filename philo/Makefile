@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/08 14:42:44 by mmondell         ###   ########.fr        #
+#    Updated: 2021/09/09 09:43:01 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ INCLUDE_DIR		= include/
 UTIL_DIR		= utility_functions/
 
 ## ----- SOURCE FILES ----- ##
-SRCS_FILES		= philosophers.c init_philos.c utils.c meal_routine.c init_mutex.c
+SRCS_FILES		= philosophers.c init_philos.c utils.c meal_routine.c
 
 UTIL_FILES		= ft_atoi.c ft_putchar_fd.c ft_putstr_fd.c ft_split.c ft_calloc.c ft_memset.c \
 				  ft_strlcpy.c ft_strlen.c ft_isdigit.c

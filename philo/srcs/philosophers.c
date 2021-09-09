@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 15:33:33 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/09 09:43:12 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	main(int argc, char **argv)
 	if (!check_args(argv, &error))
 		error_exit(error);
 	philo = init_structs(argv, &error, count);
-	init_mutex(philo);
 	count = ft_atoi(argv[0]);
 	create_threads(philo, count);
 	if (free_me)

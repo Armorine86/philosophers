@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 14:43:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/09 10:55:51 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ unsigned int	timer(void)
 
 void	free_all_exit(t_philo *p)
 {
-	free(p->fork_mutex);
+	p->settings.total_meals = 0;
 	free(p);
+	exit(0);
 }
 
 void	free_tab(char **tab)

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/08 15:53:26 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/09 11:24:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,61 +24,61 @@ void	create_threads(t_philo *p, int total_philo)
 		i++;
 	}
 	while (i-- > 0)
+	{
 		pthread_join(thread_id[i], NULL);
+		pthread_mutex_destroy(&p->info[i].fork_lock);
+	}
 }
 
-
-
-t_info	*init_philo_info(t_philo *p)
+void	init_philo_info(t_philo *p)
 {
 	t_info	*info;
 	int	i;
 
-	info = ft_calloc(0, sizeof(t_info) * p->settings->total_philo);
 	i = 0;
-	while (i < p->settings->total_philo)
+	info = ft_calloc(0, sizeof(t_info) * p->settings.total_philo);
+	while (i < p->settings.total_philo)
 	{
 		info[i].id = i;
-		info[i].state[s_think] = 1;
 		info[i].timer = timer();
+		info[i].state[s_think] = 1;
 		i++;
 	}
-	return (info);
+	i = 0;
+	while (i < p->settings.total_philo)
+		printf("Philo ID: %d\n", info[i++].id);
+	p->info = (t_info *)info;
+	free(info);
 }
 
-t_settings	*init_settings(char **argv, int arg_count)
+void	init_settings(t_philo *p, char **argv, int arg_count)
 {
-	t_settings	*s;
 	int	i;
 
-	s = ft_calloc(0, sizeof(t_settings));
 	i = 0;
-	s->total_philo = ft_atoi(argv[i++]);
-	s->time_die = ft_atoi(argv[i++]);
-	s->time_eat = ft_atoi(argv[i++]);
-	s->time_sleep = ft_atoi(argv[i++]);
+	p->settings.total_philo = ft_atoi(argv[i++]);
+	p->settings.time_die = ft_atoi(argv[i++]);
+	p->settings.time_eat = ft_atoi(argv[i++]);
+	p->settings.time_sleep = ft_atoi(argv[i++]);
 	if (arg_count == 5)
-		s->total_meals = ft_atoi(argv[i]);
-	return (s);
+		p->settings.total_meals = ft_atoi(argv[i]);
 }
 
 t_philo	*init_structs(char **argv, int *error, int count)
 {
-	t_info		*info;
-	t_settings	*s;
 	t_philo		*p;
 	int			philo_num;
 	int			i;
 
 	i = 0;
 	philo_num = ft_atoi(argv[0]);
-	p = ft_calloc(0, sizeof(t_philo) * philo_num);
-	s = init_settings(argv, count);
-	p->settings = (t_settings *)s;
-	free(s);
+	p = ft_calloc(0, sizeof(t_philo));
+	init_settings(p, argv, count);
 	if (!p)
 		*error = 2;
-	info = init_philo_info(p);
-	p->info = (t_info *)info;
+	init_philo_info(p);
+	p->info[4].id = 99999;
+	while (i < p->settings.total_philo)
+		printf("Philo ID: %d\n", p->info[i++].id);
 	return (p);
 }
