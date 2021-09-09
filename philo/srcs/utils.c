@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/09 10:55:51 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/09 15:15:10 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ unsigned int	timer(void)
 
 void	free_all_exit(t_philo *p)
 {
-	p->settings.total_meals = 0;
+	free(p->info);
+	free(p->settings);
 	free(p);
 	exit(0);
 }
@@ -44,11 +45,15 @@ void	free_tab(char **tab)
 	}
 }
 
-void	error_exit(int error)
+void	error_exit(t_philo *p, int error)
 {
 	if (error == 1)
 		ft_putstr_fd("INVALID ARGUMENT", 2);
 	else if (error == 2)
 		ft_putstr_fd("MALLOC FAILED", 2);
-	exit (EXIT_FAILURE);
+	else if (error == 3)
+	{
+		ft_putstr_fd("THREAD CREATION FAILED", 2);
+		free_all_exit(p);
+	}
 }

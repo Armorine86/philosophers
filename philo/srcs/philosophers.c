@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/09 09:43:12 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/09 15:16:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	main(int argc, char **argv)
 	int			free_me;
 	int			error;
 
+	philo = NULL;
 	free_me = 0;
 	error = 0;
 	argv++;
@@ -92,8 +93,8 @@ int	main(int argc, char **argv)
 	if (count < 4)
 		usage(argv[0]);
 	if (!check_args(argv, &error))
-		error_exit(error);
-	philo = init_structs(argv, &error, count);
+		error_exit(philo, error);
+	philo = init_structs(argv, count);
 	count = ft_atoi(argv[0]);
 	create_threads(philo, count);
 	if (free_me)

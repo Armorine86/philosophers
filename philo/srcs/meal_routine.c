@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 08:22:49 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/09 11:02:29 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/09 15:56:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	*meal_routine(void	*philo)
 {
-	t_philo	*p;
-	int		i;
+	t_info	*info;
+	int	i;
 
 	i = 0;
-	p = (t_philo *)philo;
-
-	return (philo);
+	info = (t_info *)philo;
+	pthread_mutex_lock(info->print);
+	printf("total meals: %d\n", info->settings->total_meals);
+	pthread_mutex_unlock(info->print);
+	return (info);
 }
