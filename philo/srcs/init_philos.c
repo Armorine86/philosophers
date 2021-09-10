@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/09 15:57:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 08:39:58 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	create_threads(t_philo *p, int total_philo)
 		pthread_mutex_destroy(p->info[i].fork_lock);
 		pthread_mutex_destroy(p->info[i].print);
 		free(p->info[i].fork_lock);
+		free(p->info[i].print);
 	}
 }
 

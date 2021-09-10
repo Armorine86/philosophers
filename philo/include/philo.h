@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/09 15:56:12 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 08:39:18 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ enum e_state
 	s_die,
 };
 
-typedef struct s_philo	t_philo;
 typedef struct s_settings
 {
 	int				total_philo;
