@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 09:32:12 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:45:19 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	create_threads(t_philo *p, int total_philo)
 	i = 0;
 	while (i < total_philo)
 	{
-		printf("Before threads:  %d\n", p->info[i].settings->total_meals);
+		//printf("Before threads:  %d\n", p->info[i].settings->total_meals);
 		if (pthread_create(&t_id[i], NULL, &meal_routine, &p->info[i]))
 			error_exit(p, 3);
 		printf("Thread Id: %p\n", &t_id[i]);
@@ -35,6 +35,7 @@ void	create_threads(t_philo *p, int total_philo)
 		free(p->info[i].fork_lock);
 		free(p->info[i].print);
 	}
+	free(t_id);
 }
 
 static bool	init_philo_info(t_philo *p)

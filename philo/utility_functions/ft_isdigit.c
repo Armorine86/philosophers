@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:01:31 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 13:21:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:38:31 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 int	ft_isdigit(int c)
 {

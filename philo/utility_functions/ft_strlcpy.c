@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 09:05:50 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 12:57:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:38:40 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {

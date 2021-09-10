@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 11:51:30 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 12:56:08 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:38:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 void	*ft_calloc(size_t ele, size_t size)
 {

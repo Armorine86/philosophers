@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/06 15:02:55 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 12:54:36 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:37:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 11:55:47 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 12:56:01 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:38:34 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {
