@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 08:53:53 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:32:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILOSOPHER_H
+# define PHILOSOPHER_H
 
 # include <unistd.h>
 # include <sys/time.h>

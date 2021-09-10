@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 09:15:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:32:12 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 void	create_threads(t_philo *p, int total_philo)
 {

@@ -6,14 +6,14 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 13:22:30 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/03 13:44:26 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:32:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "philo.h"
+# include "philosopher.h"
 
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);

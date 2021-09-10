@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 08:38:47 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:32:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 unsigned int	timer(void)
 {
