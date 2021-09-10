@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_philos.c                                      :+:      :+:    :+:   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 08:39:58 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 09:15:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	create_threads(t_philo *p, int total_philo)
 {
-	pthread_t t_id[total_philo];
-	int		i;
-	
+	pthread_t	*t_id;
+	int			i;
+
+	t_id = (pthread_t *)malloc(sizeof(pthread_t) * total_philo);
 	i = 0;
 	while (i < total_philo)
 	{
@@ -36,7 +37,7 @@ void	create_threads(t_philo *p, int total_philo)
 	}
 }
 
-bool	init_philo_info(t_philo *p)
+static bool	init_philo_info(t_philo *p)
 {
 	t_info	*info;
 	int		i;
@@ -64,7 +65,7 @@ bool	init_philo_info(t_philo *p)
 	return (true);
 }
 
-bool	init_settings(t_philo *p, char **argv, int arg_count)
+static bool	init_settings(t_philo *p, char **argv, int arg_count)
 {
 	t_settings	*settings;
 	int			i;
