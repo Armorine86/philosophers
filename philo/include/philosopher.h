@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 09:32:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 15:19:06 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_settings
 	unsigned int	time_sleep;
 }	t_settings;
 
-typedef struct s_info
+typedef struct s_philo
 {
 	pthread_mutex_t	*fork_lock;
 	pthread_mutex_t	*print;
@@ -48,24 +48,26 @@ typedef struct s_info
 	int				fork;
 	int				id;
 	int				state[4];
-	t_settings		*settings;
-}	t_info;
-
-typedef struct s_philo
-{
-	t_settings			*settings;
-	t_info				*info;
+	struct s_main	*m;
 }	t_philo;
 
-t_philo			*init_structs(char **argv, int count);
-void			*meal_routine(void	*philo);
-void			create_threads(t_philo *p, int total_philo);
+typedef struct s_main
+{
+	t_settings			*settings;
+	t_philo				*philo;
+}	t_main;
+
+t_main			*init_structs(char **argv, int count);
+void			*meal_routine(void	*main);
+void			create_threads(t_main *m, int total_main);
+void			print_state(t_philo *philo);
 
 /* UTILITIES */
 
-void			error_exit(t_philo *p, int error);
-void			free_all_exit(t_philo *p);
+void			error_exit(t_main *m, int error);
+void			free_all_exit(t_main *m);
 void			free_tab(char **argv);
-unsigned int	timer(void);
+unsigned int	get_time(void);
+unsigned int	time_diff(struct timeval time1, struct timeval time2);
 
 #endif

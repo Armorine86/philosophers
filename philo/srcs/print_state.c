@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   print_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 15:18:03 by mmondell         ###   ########.fr       */
+/*   Created: 2021/09/10 14:52:00 by mmondell          #+#    #+#             */
+/*   Updated: 2021/09/10 15:17:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	game_over(t_philo *philo)
+void	print_state(t_philo *philo)
 {
-	print_state(philo);
-}
-
-void	*meal_routine(void *arg)
-{
-	t_philo			*philo;
-	
-	philo = (t_philo *)arg;
-	while (true)
-	{
-		if (philo->state[s_die] == 1)
-			game_over(philo);
-		else if (philo->state[s_think] == 1)
-			;
-		else if (philo->state[s_eat] == 1)
-			;
-		else if (philo->state[s_sleep] == 1)
-			;
-	}
-	return(NULL);
+	if (philo->state[s_think] == 1)
+		printf("%d philo%d is thinking", philo->timer, philo->id);
+	else if (philo->state[s_eat] == 1)
+		printf("%d philo%d is eating", philo->timer, philo->id);
+	else if (philo->state[s_sleep] == 1)
+		printf("%d philo%d is sleeping", philo->timer, philo->id);
+	if (philo->state[s_die] == 1)
+		printf("%d philo%d died", philo->timer, philo->id);
 }

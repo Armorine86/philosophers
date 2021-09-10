@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/10 09:36:56 by mmondell         ###   ########.fr        #
+#    Updated: 2021/09/10 15:19:56 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,10 @@ INCLUDE_DIR		= include/
 UTIL_DIR		= utility_functions/
 
 ## ----- SOURCE FILES ----- ##
-SRCS_FILES		= main.c init_structs.c utils.c routine.c
+SRCS_FILES		= main.c init_structs.c utils.c routine.c state_action.c print_state.c
 
 UTIL_FILES		= ft_atoi.c ft_putchar_fd.c ft_putstr_fd.c ft_split.c ft_calloc.c ft_memset.c \
-				  ft_strlcpy.c ft_strlen.c ft_isdigit.c
+				  ft_strlcpy.c ft_strlen.c ft_isdigit.c ft_absolute.c
 ## ----- BONUS SOURCE FILES ----- ##
 #*B_SRCS_FILES	= 
 
