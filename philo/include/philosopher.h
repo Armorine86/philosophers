@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 15:19:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/13 09:26:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_settings
 typedef struct s_philo
 {
 	pthread_mutex_t	*fork_lock;
-	pthread_mutex_t	*print;
 	unsigned int	timer;
 	unsigned int	last_meal;
 	int				fork;
@@ -55,6 +54,7 @@ typedef struct s_main
 {
 	t_settings			*settings;
 	t_philo				*philo;
+	pthread_mutex_t		*print;
 }	t_main;
 
 t_main			*init_structs(char **argv, int count);
