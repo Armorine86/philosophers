@@ -6,13 +6,10 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/09/13 09:25:34 by mmondell         ###   ########.fr       */
-=======
-/*   Updated: 2021/09/13 09:26:29 by mmondell         ###   ########.fr       */
->>>>>>> 7cbea8ab59e9386527441a9755ba3fc62f309d0d
+/*   Updated: 2021/09/13 09:38:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef PHILOSOPHER_H
 # define PHILOSOPHER_H
