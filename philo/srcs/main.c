@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 09:32:36 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 15:16:16 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,12 @@ void	usage(char *argv)
 
 int	main(int argc, char **argv)
 {
-	t_philo		*philo;
+	t_main		*main;
 	int			count;	
 	int			free_me;
 	int			error;
 
-	philo = NULL;
+	main = NULL;
 	free_me = 0;
 	error = 0;
 	argv++;
@@ -93,11 +93,11 @@ int	main(int argc, char **argv)
 	if (count < 4)
 		usage(argv[0]);
 	if (!check_args(argv, &error))
-		error_exit(philo, error);
-	philo = init_structs(argv, count);
+		error_exit(main, error);
+	main = init_structs(argv, count);
 	count = ft_atoi(argv[0]);
-	create_threads(philo, count);
+	create_threads(main, count);
 	if (free_me)
 		free_tab(argv);
-	free_all_exit(philo);
+	free_all_exit(main);
 }

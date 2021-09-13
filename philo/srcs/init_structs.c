@@ -6,67 +6,68 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 09:45:19 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/10 15:18:25 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	create_threads(t_philo *p, int total_philo)
+void	create_threads(t_main *p, int total_main)
 {
 	pthread_t	*t_id;
 	int			i;
 
-	t_id = (pthread_t *)malloc(sizeof(pthread_t) * total_philo);
+	t_id = (pthread_t *)malloc(sizeof(pthread_t) * total_main);
+	if (!t_id)
+		error_exit(p, 3);
 	i = 0;
-	while (i < total_philo)
+	while (i < total_main)
 	{
-		//printf("Before threads:  %d\n", p->info[i].settings->total_meals);
-		if (pthread_create(&t_id[i], NULL, &meal_routine, &p->info[i]))
-			error_exit(p, 3);
+		if (pthread_create(&t_id[i], NULL, &meal_routine, &p->philo[i]))
+			error_exit(p, 4);
 		printf("Thread Id: %p\n", &t_id[i]);
 		i++;
 	}
 	while (i-- > 0)
 	{
 		pthread_join(t_id[i], NULL);
-		pthread_mutex_destroy(p->info[i].fork_lock);
-		pthread_mutex_destroy(p->info[i].print);
-		free(p->info[i].fork_lock);
-		free(p->info[i].print);
+		pthread_mutex_destroy(p->philo[i].fork_lock);
+		pthread_mutex_destroy(p->philo[i].print);
+		free(p->philo[i].fork_lock);
+		free(p->philo[i].print);
 	}
 	free(t_id);
 }
 
-static bool	init_philo_info(t_philo *p)
+static bool	init_main_philo(t_main *p)
 {
-	t_info	*info;
+	t_philo	*philo;
 	int		i;
 
 	i = 0;
-	info = ft_calloc(0, sizeof(t_info) * p->settings->total_philo);
-	if (!info)
+	philo = ft_calloc(0, sizeof(t_philo) * p->settings->total_philo);
+	if (!philo)
 		return (false);
 	while (i < p->settings->total_philo)
 	{
-		info[i].fork_lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+		philo[i].fork_lock = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
 				* p->settings->total_philo);
-		info[i].print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-		pthread_mutex_init(info[i].print, NULL);
-		pthread_mutex_init(info[i].fork_lock, NULL);
-		info[i].id = i;
-		info[i].timer = timer();
-		info[i].fork = 0;
-		info[i].state[s_think] = 1;
-		info[i].settings = p->settings;
+		philo[i].print = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init(philo[i].print, NULL);
+		pthread_mutex_init(philo[i].fork_lock, NULL);
+		philo[i].id = i;
+		philo[i].last_meal = philo->timer;
+		philo[i].fork = 0;
+		philo[i].state[s_think] = 1;
+		//philo[i].settings = p->settings;
 		i++;
 	}
 	i = 0;
-	p->info = (t_info *)info;
+	p->philo = (t_philo *)philo;
 	return (true);
 }
 
-static bool	init_settings(t_philo *p, char **argv, int arg_count)
+static bool	init_settings(t_main *p, char **argv, int arg_count)
 {
 	t_settings	*settings;
 	int			i;
@@ -86,16 +87,16 @@ static bool	init_settings(t_philo *p, char **argv, int arg_count)
 	return (true);
 }
 
-t_philo	*init_structs(char **argv, int count)
+t_main	*init_structs(char **argv, int count)
 {
-	t_philo		*p;
-	int			philo_num;
+	t_main		*p;
+	int			main_num;
 	int			i;
 
 	i = 0;
-	philo_num = ft_atoi(argv[0]);
-	p = ft_calloc(0, sizeof(t_philo));
-	if (!p || !init_settings(p, argv, count) || !init_philo_info(p))
+	main_num = ft_atoi(argv[0]);
+	p = ft_calloc(0, sizeof(t_main));
+	if (!p || !init_settings(p, argv, count) || !init_main_philo(p))
 		error_exit(p, 2);
 	return (p);
 }
