@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 10:38:09 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/13 11:14:52 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	create_threads(t_main *m, int total_main)
 		printf("Thread Id: %p\n", &t_id[i]);
 		i++;
 	}
+	pthread_mutex_destroy(&m->print);
 	while (i-- > 0)
 	{
 		pthread_join(t_id[i], NULL);
 		pthread_mutex_destroy(m->philo[i].fork_lock);
-		pthread_mutex_destroy(&m->print);
 		free(m->philo[i].fork_lock);
-		//free(m->print);
 	}
+	//free(m->print);
 	free(t_id);
 }
 
@@ -69,7 +69,7 @@ static bool	init_settings(t_main *m, char **argv, int arg_count)
 	int			i;
 
 	i = 0;
-	settings = ft_calloc(0, sizeof(t_settings));
+	settings = ft_calloc(1, sizeof(t_settings));
 	if (!settings)
 		return (false);
 	settings->total_philo = ft_atoi(argv[i++]);
@@ -89,7 +89,8 @@ t_main	*init_structs(char **argv, int count)
 	int			i;
 
 	i = 0;
-	main = ft_calloc(0, sizeof(t_main));
+	main = ft_calloc(1, sizeof(t_main));
+	//main->print = ft_calloc(1, sizeof(pthread_mutex_t));
 	pthread_mutex_init(&main->print, NULL);
 		if (!main || !init_settings(main, argv, count) || !init_main_philo(main))
 		error_exit(main, 2);

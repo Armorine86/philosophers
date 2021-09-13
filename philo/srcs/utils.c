@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 15:21:16 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/13 11:18:21 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ unsigned int	time_diff(struct timeval time1, struct timeval time2)
 	return (ft_abs(t1 - t2));
 }	
 
-unsigned int	get_time(void)
+long	get_time(void)
 {
 	struct timeval	time;
-	unsigned int	s1;
-	unsigned int	s2;
+	long			s1;
+	long			s2;
 
 	gettimeofday(&time, NULL);
 	s1 = time.tv_sec * 1000;

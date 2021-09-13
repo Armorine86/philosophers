@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 10:40:47 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/13 11:39:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	*meal_routine(void *arg)
 	t_philo			*philo;
 	
 	philo = (t_philo *)arg;
-	
 	// while (true)
 	// {
 	// 	if (philo->state[s_die] == 1)

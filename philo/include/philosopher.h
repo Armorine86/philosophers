@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 10:16:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/13 11:18:35 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ enum e_state
 
 typedef struct s_settings
 {
-	int				total_philo;
-	int				total_meals;
-	unsigned int	time_die;
-	unsigned int	time_eat;
-	unsigned int	time_sleep;
+	int	total_philo;
+	int	total_meals;
+	int	time_die;
+	int	time_eat;
+	int	time_sleep;
 }	t_settings;
 
 typedef struct s_philo
@@ -68,7 +68,7 @@ void			print_state(t_philo *philo);
 void			error_exit(t_main *m, int error);
 void			free_all_exit(t_main *m);
 void			free_tab(char **argv);
-unsigned int	get_time(void);
+long			get_time(void);
 unsigned int	time_diff(struct timeval time1, struct timeval time2);
 
 #endif
