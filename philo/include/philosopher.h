@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 11:18:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 13:34:38 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 # include <unistd.h>
 # include "utils.h"
 
-enum e_state
+typedef enum e_state
 {
 	s_eat,
 	s_sleep,
 	s_think,
 	s_die,
-};
+} t_state;
 
 typedef struct s_settings
 {
@@ -43,11 +43,14 @@ typedef struct s_settings
 typedef struct s_philo
 {
 	pthread_mutex_t	*fork_lock;
-	unsigned int	timer;
-	unsigned int	last_meal;
+	long			last_meal;
+	long			start_eat;
+	int				meals;
+	int				satiated;
+	int				priority;
 	int				fork;
 	int				id;
-	int				state[4];
+	t_state			state;
 	struct s_main	*m;
 }	t_philo;
 
@@ -55,13 +58,24 @@ typedef struct s_main
 {
 	t_settings			*settings;
 	t_philo				*philo;
+	struct timeval		*clock;
 	pthread_mutex_t		print;
 }	t_main;
 
+/* MAIN */
+
 t_main			*init_structs(char **argv, int count);
-void			*meal_routine(void	*main);
 void			create_threads(t_main *m, int total_main);
+
+/* ROUTINE */
+
 void			print_state(t_philo *philo);
+void			*meal_routine(void	*main);
+void			prepare_to_eat(t_philo *p);
+void			time_to_sleep(t_philo *p);
+void			time_to_eat(t_philo *p);
+
+
 
 /* UTILITIES */
 
@@ -69,6 +83,5 @@ void			error_exit(t_main *m, int error);
 void			free_all_exit(t_main *m);
 void			free_tab(char **argv);
 long			get_time(void);
-unsigned int	time_diff(struct timeval time1, struct timeval time2);
 
 #endif

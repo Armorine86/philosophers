@@ -6,32 +6,40 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 11:39:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 13:59:25 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	game_over(t_philo *philo)
+bool	starving(t_philo *p)
 {
-	print_state(philo);
+	
+	return (false);
 }
 
 void	*meal_routine(void *arg)
 {
-	t_philo			*philo;
-	
-	philo = (t_philo *)arg;
-	// while (true)
-	// {
-	// 	if (philo->state[s_die] == 1)
-	// 		game_over(philo);
-	// 	else if (philo->state[s_think] == 1)
-	// 		;
-	// 	else if (philo->state[s_eat] == 1)
-	// 		;
-	// 	else if (philo->state[s_sleep] == 1)
-	// 		;
-	// }
-	return(NULL);
+	t_philo	*p;
+
+	p = (t_philo *)arg;
+	while (true)
+	{
+		if (starving(p))
+			game_over(p);
+		else if (p->state == s_think)
+			prepare_to_eat(p);
+		else if (p->state == s_eat)
+			time_to_eat(p);
+		else if (p->state == s_sleep)
+			time_to_sleep(p);
+		if (p->m->settings->total_meals != 0)
+		{
+			if (p->meals * p->m->settings->total_philo
+				== p->m->settings->total_meals * p->m->settings->total_philo);
+			printf("Meals Quotas Reached!\n");
+			free_all_exit(p->m);
+		}
+	}
+	return (NULL);
 }

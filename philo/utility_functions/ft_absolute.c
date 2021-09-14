@@ -6,11 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:49:15 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 14:50:06 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 08:51:32 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_abs(int num)
+long	ft_abs(int num)
 {
 	if (num < 0)
 		num *= -1;

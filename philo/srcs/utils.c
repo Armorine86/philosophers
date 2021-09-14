@@ -6,21 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 11:18:21 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 08:31:38 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
-
-unsigned int	time_diff(struct timeval time1, struct timeval time2)
-{
-	unsigned int	t1;
-	unsigned int	t2;
-	
-	t1 = (time1.tv_sec * 1000) + (time1.tv_usec / 1000);
-	t2 = (time2.tv_sec * 1000) + (time2.tv_usec / 1000);
-	return (ft_abs(t1 - t2));
-}	
 
 long	get_time(void)
 {

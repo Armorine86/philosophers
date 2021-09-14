@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/13 11:14:52 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 12:59:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	create_threads(t_main *m, int total_main)
 	{
 		if (pthread_create(&t_id[i], NULL, &meal_routine, &m->philo[i]))
 			error_exit(m, 4);
-		printf("Thread Id: %p\n", &t_id[i]);
 		i++;
 	}
 	pthread_mutex_destroy(&m->print);
@@ -35,13 +34,11 @@ void	create_threads(t_main *m, int total_main)
 		pthread_mutex_destroy(m->philo[i].fork_lock);
 		free(m->philo[i].fork_lock);
 	}
-	//free(m->print);
 	free(t_id);
 }
 
 static bool	init_main_philo(t_main *m)
 {
-	//t_philo	*philo;
 	int		i;
 
 	i = 0;
@@ -50,12 +47,12 @@ static bool	init_main_philo(t_main *m)
 		return (false);
 	while (i < m->settings->total_philo)
 	{
-		m->philo[i].fork_lock = ft_calloc(m->settings->total_philo, sizeof(pthread_mutex_t));
+		m->philo[i].fork_lock = ft_calloc(m->settings->total_philo,
+				sizeof(pthread_mutex_t));
 		pthread_mutex_init(m->philo[i].fork_lock, NULL);
-		m->philo[i].id = i;
-		//m->philo[i].last_meal = m->philo->timer;
-		m->philo[i].fork = 0;
-		m->philo[i].state[s_think] = 1;
+		m->philo[i].id = i + 1;
+		m->philo[i].state = s_think;
+		m->philo[i].priority = m->philo[i].id % 2;
 		m->philo[i].m = m;
 		i++;
 	}
@@ -85,14 +82,14 @@ static bool	init_settings(t_main *m, char **argv, int arg_count)
 
 t_main	*init_structs(char **argv, int count)
 {
-	t_main		*main;
+	t_main		*m;
 	int			i;
 
 	i = 0;
-	main = ft_calloc(1, sizeof(t_main));
-	//main->print = ft_calloc(1, sizeof(pthread_mutex_t));
-	pthread_mutex_init(&main->print, NULL);
-		if (!main || !init_settings(main, argv, count) || !init_main_philo(main))
-		error_exit(main, 2);
-	return (main);
+	m = ft_calloc(1, sizeof(t_main));
+	m->clock = get_time();
+	pthread_mutex_init(&m->print, NULL);
+	if (!m || !init_settings(m, argv, count) || !init_main_philo(m))
+		error_exit(m, 2);
+	return (m);
 }

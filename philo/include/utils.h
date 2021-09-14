@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 13:22:30 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 14:50:30 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 08:51:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void			*ft_calloc(size_t ele, size_t size);
 void			*ft_memset(void *s, int c, size_t n);
 size_t			ft_strlcpy(char *dst, const char *src, size_t size);
 size_t			ft_strlen(const char *s);
-unsigned int	ft_abs(int num);
+long			ft_abs(int num);
 
 #endif
