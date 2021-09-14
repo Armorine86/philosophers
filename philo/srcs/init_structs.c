@@ -6,22 +6,22 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/14 12:59:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 14:29:26 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	create_threads(t_main *m, int total_main)
+void	create_threads(t_main *m, int total_philo)
 {
 	pthread_t	*t_id;
 	int			i;
 
-	t_id = (pthread_t *)malloc(sizeof(pthread_t) * total_main);
+	t_id = ft_calloc(total_philo, sizeof(pthread_t));
 	if (!t_id)
 		error_exit(m, 3);
 	i = 0;
-	while (i < total_main)
+	while (i < total_philo)
 	{
 		if (pthread_create(&t_id[i], NULL, &meal_routine, &m->philo[i]))
 			error_exit(m, 4);

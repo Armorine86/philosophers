@@ -6,10 +6,9 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/14 13:34:38 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/14 15:24:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef PHILOSOPHER_H
 # define PHILOSOPHER_H
@@ -29,7 +28,7 @@ typedef enum e_state
 	s_sleep,
 	s_think,
 	s_die,
-} t_state;
+}	t_state;
 
 typedef struct s_settings
 {
@@ -44,7 +43,7 @@ typedef struct s_philo
 {
 	pthread_mutex_t	*fork_lock;
 	long			last_meal;
-	long			start_eat;
+	long			starve;
 	int				meals;
 	int				satiated;
 	int				priority;
@@ -56,10 +55,10 @@ typedef struct s_philo
 
 typedef struct s_main
 {
-	t_settings			*settings;
-	t_philo				*philo;
-	struct timeval		*clock;
-	pthread_mutex_t		print;
+	t_settings		*settings;
+	t_philo			*philo;
+	long			clock;
+	pthread_mutex_t	print;
 }	t_main;
 
 /* MAIN */
@@ -74,8 +73,6 @@ void			*meal_routine(void	*main);
 void			prepare_to_eat(t_philo *p);
 void			time_to_sleep(t_philo *p);
 void			time_to_eat(t_philo *p);
-
-
 
 /* UTILITIES */
 
