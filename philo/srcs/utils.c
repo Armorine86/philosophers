@@ -6,23 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/14 08:31:38 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/15 08:30:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
-
-long	get_time(void)
-{
-	struct timeval	time;
-	long			s1;
-	long			s2;
-
-	gettimeofday(&time, NULL);
-	s1 = time.tv_sec * 1000;
-	s2 = time.tv_usec / 1000;
-	return (s1 + s2);
-}
 
 void	free_all_exit(t_main *m)
 {

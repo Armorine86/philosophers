@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/14 15:24:37 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/15 13:25:47 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			create_threads(t_main *m, int total_main);
 
 /* ROUTINE */
 
-void			print_state(t_philo *philo);
+void			print_state(t_philo *p);
 void			*meal_routine(void	*main);
 void			prepare_to_eat(t_philo *p);
 void			time_to_sleep(t_philo *p);
@@ -79,6 +79,8 @@ void			time_to_eat(t_philo *p);
 void			error_exit(t_main *m, int error);
 void			free_all_exit(t_main *m);
 void			free_tab(char **argv);
+long			clock_now(t_philo *p);
 long			get_time(void);
+long			time_diff(t_philo *p);
 
 #endif
