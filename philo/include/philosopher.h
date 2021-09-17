@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/17 09:44:36 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/17 15:15:38 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,10 @@ void			time_to_eat(t_philo *p);
 
 /* ROUTINE UTILS */
 
-bool	fork_available(t_philo *p);
-void	lock_mutex(t_philo *p);
-void	unlock_mutex(t_philo *p);
+bool			check_if_starving(t_philo *p);
+bool			fork_available(t_philo *p);
+void			lock_mutex(t_philo *p);
+void			unlock_mutex(t_philo *p);
 
 /* UTILITIES */
 
@@ -92,5 +93,7 @@ void			free_tab(char **argv);
 long			clock_now(t_philo *p);
 long			get_time(void);
 long			time_diff(t_philo *p);
+
+void	print_stack(t_philo *p);
 
 #endif
