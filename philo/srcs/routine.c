@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/15 13:07:04 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/16 16:52:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,14 @@ void	*meal_routine(void *arg)
 		else if (p->state == s_think)
 			prepare_to_eat(p);
 		else if (p->state == s_eat)
-		{
-			printf("!!!!!!!!philo %d is ready to eat!!!!!!!!!\n\n", p->id);
 			time_to_eat(p);
-		}
 		else if (p->state == s_sleep)
 			time_to_sleep(p);
-		if (reached_meal_quotas(p))
-		{
-			printf("Meal quotas reached!\n");
-			break ;
-		}
+		// if (reached_meal_quotas(p))
+		// {
+		// 	printf("Meal quotas reached!\n");
+		// 	return (NULL);
+		// }
 	}
 	return (NULL);
 }

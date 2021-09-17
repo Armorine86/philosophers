@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/14 14:29:26 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/17 12:18:43 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	create_threads(t_main *m, int total_philo)
 		i++;
 	}
 	pthread_mutex_destroy(&m->print);
+	pthread_mutex_destroy(&m->queue_lock);
 	while (i-- > 0)
 	{
 		pthread_join(t_id[i], NULL);
@@ -89,7 +90,10 @@ t_main	*init_structs(char **argv, int count)
 	m = ft_calloc(1, sizeof(t_main));
 	m->clock = get_time();
 	pthread_mutex_init(&m->print, NULL);
+	pthread_mutex_init(&m->queue_lock, NULL);
 	if (!m || !init_settings(m, argv, count) || !init_main_philo(m))
 		error_exit(m, 2);
+	m->queue = ft_calloc((size_t)m->settings->total_philo, sizeof(int));
+	m->last_philo = m->settings->total_philo;
 	return (m);
 }

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/15 13:25:47 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/17 09:44:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ typedef struct s_philo
 
 typedef struct s_main
 {
+	long			clock;
+	int				last_philo;
+	int				*queue;
 	t_settings		*settings;
 	t_philo			*philo;
-	long			clock;
+	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print;
 }	t_main;
 
@@ -68,11 +71,18 @@ void			create_threads(t_main *m, int total_main);
 
 /* ROUTINE */
 
+void			get_in_queue(t_philo *p);
 void			print_state(t_philo *p);
 void			*meal_routine(void	*main);
 void			prepare_to_eat(t_philo *p);
 void			time_to_sleep(t_philo *p);
 void			time_to_eat(t_philo *p);
+
+/* ROUTINE UTILS */
+
+bool	fork_available(t_philo *p);
+void	lock_mutex(t_philo *p);
+void	unlock_mutex(t_philo *p);
 
 /* UTILITIES */
 

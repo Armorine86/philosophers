@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 08:29:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/15 10:26:03 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/17 08:15:04 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ long	clock_now(t_philo *p)
 {
 	long	time;
 
+	time = 0;
 	time = p->m->clock - get_time();
 	return (ft_abs(time));
 }
