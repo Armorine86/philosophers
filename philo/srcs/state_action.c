@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/17 15:22:31 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:26:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,29 @@ void	time_to_eat(t_philo *p)
 
 void	time_to_sleep(t_philo *p)
 {
+	pthread_mutex_lock(&p->m->queue_lock);
+	end_of_queue(p);
+	pthread_mutex_unlock(&p->m->queue_lock);
 	usleep(200 * 1000);
-	unlock_mutex(p);
 	p->state = s_think;
 }
 
 void	prepare_to_eat(t_philo *p)
 {
-	while (!fork_available(p))
+	int	i;
+
+	i = p->m->settings->total_philo - 1;
+	while (true)
 	{
-		return ;
+		pthread_mutex_lock(&p->m->queue_lock);
+		if (p->id == p->m->queue[i] || p->id == p->m->queue[i - 1])
+		{
+			pthread_mutex_unlock(&p->m->queue_lock);	
+			break;
+		}
+		pthread_mutex_unlock(&p->m->queue_lock);
 	}
-	lock_mutex(p);
-	p->state = s_eat;
-	return ;
+	lock_mutex;
 }
 
 // TODO	Fix the timeget functions. Results are probably not accurate and philo dies for no reason

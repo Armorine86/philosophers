@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/17 15:15:38 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:20:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ typedef struct s_main
 {
 	long			clock;
 	int				last_philo;
+	int				total_priority;
 	int				*queue;
 	t_settings		*settings;
 	t_philo			*philo;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print;
+	pthread_mutex_t	print_stack;
 }	t_main;
 
 /* MAIN */
@@ -71,7 +73,8 @@ void			create_threads(t_main *m, int total_main);
 
 /* ROUTINE */
 
-void			get_in_queue(t_philo *p);
+void			place_in_queue(t_main *m);
+void			end_of_queue(t_philo *p);
 void			print_state(t_philo *p);
 void			*meal_routine(void	*main);
 void			prepare_to_eat(t_philo *p);

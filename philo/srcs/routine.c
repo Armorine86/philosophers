@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/17 15:14:20 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 12:12:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	*meal_routine(void *arg)
 	p = (t_philo *)arg;
 	while (true)
 	{
-		get_in_queue(p);
 		if (p->state == s_die)
 		{
 			printf("%ld philo %d has died\n",  clock_now(p), p->id);

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/17 12:18:43 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 15:14:17 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	create_threads(t_main *m, int total_philo)
 	if (!t_id)
 		error_exit(m, 3);
 	i = 0;
+	place_in_queue(m);
 	while (i < total_philo)
 	{
 		if (pthread_create(&t_id[i], NULL, &meal_routine, &m->philo[i]))
@@ -29,6 +30,7 @@ void	create_threads(t_main *m, int total_philo)
 	}
 	pthread_mutex_destroy(&m->print);
 	pthread_mutex_destroy(&m->queue_lock);
+	pthread_mutex_destroy(&m->print_stack);
 	while (i-- > 0)
 	{
 		pthread_join(t_id[i], NULL);
@@ -91,9 +93,11 @@ t_main	*init_structs(char **argv, int count)
 	m->clock = get_time();
 	pthread_mutex_init(&m->print, NULL);
 	pthread_mutex_init(&m->queue_lock, NULL);
+	pthread_mutex_init(&m->print_stack, NULL);
 	if (!m || !init_settings(m, argv, count) || !init_main_philo(m))
 		error_exit(m, 2);
 	m->queue = ft_calloc((size_t)m->settings->total_philo, sizeof(int));
 	m->last_philo = m->settings->total_philo;
+	m->total_priority = (m->settings->total_philo - 1) / 2;
 	return (m);
 }

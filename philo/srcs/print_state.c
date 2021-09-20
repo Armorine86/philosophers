@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 14:52:00 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/17 14:28:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 12:16:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	print_state(t_philo *p)
 	if (p->state == s_die)
 		printf("%ld philo %d died\n", p->m->clock - get_time(), p->id);
 	else if (p->state == s_think)
-		printf("%ld philo%d is thinking\n", p->m->clock, p->id);
+		printf("%ld philo %d is thinking\n",clock_now(p), p->id);
 	else if (p->state == s_eat)
-		printf("%ld philo%d is eating\n", p->m->clock, p->id);
+		printf("%ld philo %d is eating\n",clock_now(p), p->id);
 	else if (p->state == s_sleep)
-		printf("%ld philo%d is sleeping\n", p->m->clock, p->id);
+		printf("%ld philo %d is sleeping\n",clock_now(p), p->id);
 	pthread_mutex_unlock(&p->m->print);
 }
