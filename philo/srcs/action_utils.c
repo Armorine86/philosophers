@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 22:38:09 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:49:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ bool	fork_available(t_philo *p)
 
 void	take_forks(t_philo *p)
 {
-	pthread_mutex_lock(&p->fork);
+	pthread_mutex_lock(p->fork_lock);
 	p->fork = 1;
 	printf("%ld Philo %d took his fork\n", clock_now(p), p->id);
 	if (p->id == p->m->last_philo)
 	{
 		printf("%ld Philo %d took philo %d's fork\n", clock_now(p), p->id, p->m->philo[0].id);
-		pthread_mutex_lock(&p->m->philo[0].fork);	
+		pthread_mutex_lock(p->m->philo[0].fork_lock);	
 		p->m->philo[0].fork = 1;
 	}
 	else
 	{
 		p->m->philo[p->id].fork = 1;
-		pthread_mutex_lock(&p->m->philo[p->id].fork);	
+		pthread_mutex_lock(p->m->philo[p->id].fork_lock);	
 		printf("%ld Philo %d took philo %d's fork\n", clock_now(p), p->id, p->m->philo[p->id].id);
 	}
 }
@@ -50,19 +50,19 @@ void	take_forks(t_philo *p)
 void	drop_forks(t_philo *p)
 {
 	p->fork = 0;
-	pthread_mutex_unlock(&p->fork);	
+	pthread_mutex_unlock(p->fork_lock);	
 	printf("%ld Philo %d DROPPED his fork\n", clock_now(p), p->id);
 	if (p->id == p->m->last_philo)
 	{
 		printf("%ld Philo %d DROPPED philo %d's fork\n", clock_now(p), p->id, p->m->philo[0].id);	
 		p->m->philo[0].fork = 0;
-		pthread_mutex_unlock(&p->m->philo[0].fork);	
+		pthread_mutex_unlock(p->m->philo[0].fork_lock);	
 
 	}
 	else
 	{
 		p->m->philo[p->id].fork = 0;
-		pthread_mutex_unlock(&p->m->philo[p->id].fork);	
+		pthread_mutex_unlock(p->m->philo[p->id].fork_lock);	
 		printf("%ld Philo %d DROPPED philo %d's fork\n", clock_now(p), p->id, p->m->philo[p->id].id);	
 	}
 }

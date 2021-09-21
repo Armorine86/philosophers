@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 22:33:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:45:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 // TODO create a mutex for the loop
 // TODO create a condition to check if the game is over
 
-bool	game_over(t_philo *p)
+/*bool	game_over(t_philo *p)
 {
 	while (true)
 	{
 		if (clock_now(p) - p->last_meal > p->m->settings->time_die)
 			
 	}
-}
+}*/
 
 bool	reached_meal_quotas(t_philo *p)
 {
