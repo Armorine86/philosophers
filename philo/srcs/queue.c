@@ -6,13 +6,13 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:22:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 20:04:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/21 09:17:23 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	print_stack(t_philo *p)
+/*void	print_stack(t_philo *p)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ void	print_stack(t_philo *p)
 	}
 	ft_putchar_fd(1, '\n');
 	pthread_mutex_unlock(&p->m->print_stack);
-}
+}*/
 
 bool	already_in_queue(t_philo *p)
 {

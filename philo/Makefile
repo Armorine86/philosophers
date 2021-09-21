@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/17 09:44:46 by mmondell         ###   ########.fr        #
+#    Updated: 2021/09/21 14:44:38 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ UTIL_DIR		= 	utility_functions/
 
 ## ----- SOURCE FILES ----- ##
 SRCS_FILES		= 	main.c init_structs.c utils.c routine.c state_action.c print_state.c \
-					action_utils.c queue.c
+					action_utils.c queue.c create_threads.c game_over.c
 
 UTIL_FILES		= 	ft_atoi.c ft_putchar_fd.c ft_putstr_fd.c ft_split.c ft_calloc.c ft_memset.c \
 				  	ft_strlcpy.c ft_strlen.c ft_isdigit.c ft_absolute.c time_utils.c
