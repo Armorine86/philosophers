@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 22:33:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:40:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 void	time_to_eat(t_philo *p)
 {
-	pthread_mutex_lock(p->fork_lock);
-	//pthread_mutex_lock(p->m->philo[p->id].fork_lock);
+	end_of_queue(p);
 	printf("%ld Philo %d is EATING!\n", clock_now(p), p->id);
 	p->last_meal = get_time();
 	drop_forks(p);
 	p->state = s_sleep;
-	end_of_queue(p);
 	printf("%ld Philo %d is now at back of queue\n", clock_now(p), p->id);
-	pthread_mutex_unlock(p->fork_lock);
 }
 
 void	time_to_sleep(t_philo *p)
@@ -39,7 +36,7 @@ void	prepare_to_eat(t_philo *p)
 	while (true)
 	{
 		pthread_mutex_lock(&p->m->queue_lock);
-		if (p->id == p->m->queue[i] || p->id == p->m->queue[i - 1])
+		if (p->id == p->m->queue[i])
 		{
 			take_forks(p);
 			p->state = s_eat;
