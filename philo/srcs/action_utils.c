@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 21:07:00 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 21:25:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ void	take_forks(t_philo *p)
 	{
 		p->m->philo[p->id].fork = 1;
 		printf("%ld Philo %d took philo %d's fork\n", clock_now(p), p->id, p->m->philo[p->id].id);
+	}
+}
+
+void	drop_forks(t_philo *p)
+{
+	p->fork = 0;
+	printf("%ld Philo %d DROPPED his fork\n", clock_now(p), p->id);
+	if (p->id == p->m->last_philo)
+	{
+		printf("%ld Philo %d DROPPED philo %d's fork\n", clock_now(p), p->id, p->m->philo[0].id);	
+		p->m->philo[0].fork = 0;
+	}
+	else
+	{
+		p->m->philo[p->id].fork = 0;
+		printf("%ld Philo %d DROPPED philo %d's fork\n", clock_now(p), p->id, p->m->philo[p->id].id);	
 	}
 }
 

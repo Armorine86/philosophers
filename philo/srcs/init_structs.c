@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 19:38:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 22:18:37 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	create_threads(t_main *m, int total_philo)
 {
 	pthread_t	*t_id;
+	pthread_t	death_watch;
 	int			i;
 
 	t_id = ft_calloc(total_philo, sizeof(pthread_t));
@@ -22,9 +23,12 @@ void	create_threads(t_main *m, int total_philo)
 		error_exit(m, 3);
 	i = 0;
 	place_in_queue(m);
+	print_stack(m->philo);
 	while (i < total_philo)
 	{
-		if (pthread_create(&t_id[i], NULL, &meal_routine, &m->philo[i]))
+		pthread_create(&death_watch, NULL, game_over, &m->philo[i]);
+		pthread_detach(death_watch);
+		if (pthread_create(&t_id[i], NULL, meal_routine, &m->philo[i]))
 			error_exit(m, 4);
 		i++;
 	}
