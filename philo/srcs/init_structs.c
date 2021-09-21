@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 15:14:17 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 19:38:35 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ static bool	init_settings(t_main *m, char **argv, int arg_count)
 t_main	*init_structs(char **argv, int count)
 {
 	t_main		*m;
-	int			i;
 
-	i = 0;
 	m = ft_calloc(1, sizeof(t_main));
 	m->clock = get_time();
 	pthread_mutex_init(&m->print, NULL);

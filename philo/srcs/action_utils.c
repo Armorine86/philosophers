@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 15:30:53 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 21:07:00 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,33 @@
 
 bool	fork_available(t_philo *p)
 {
-	lock_mutex(p);
 	if (p->id == p->m->last_philo)
 	{
-		if (p->fork == 0 && p->m->philo[0].fork == 0)
-		{
-			p->fork = 1;
-			printf("%ld Philo %d took his fork\n", clock_now(p), p->id);
-			p->m->philo[0].fork = 1;
-			printf("%ld Philo %d took philo %d's fork\n\n",clock_now(p), p->id, p->m->philo[0].id);
-			unlock_mutex(p);
+		if (p->fork == 0 || p->m->philo[0].fork == 0)
 			return (true);
-		}
-	}
-	if (p->fork == 0 && p->m->philo[p->id].fork == 0)
-	{
-		p->fork = 1;
-		printf("%ld Philo %d took his fork\n", clock_now(p), p->id);
-		p->m->philo[p->id].fork = 1;
-		printf("%ld Philo %d took philo %d's fork\n\n",clock_now(p), p->id, p->m->philo[p->id].id);
-		unlock_mutex(p);
-		return (true);
-	}
-	return (false);
-}
-
-void	unlock_mutex(t_philo *p)
-{
-	pthread_mutex_unlock(p->fork_lock);
-	printf("%ld Philo %d fork is unlocked\n", clock_now(p), p->id);
-	if (p->id == p->m->last_philo)
-	{
-		pthread_mutex_unlock(p->m->philo[0].fork_lock);
-		printf("%ld Philo %d fork is unlocked\n", clock_now(p), p->m->philo[0].id);
+		return (false);
 	}
 	else
 	{
-		pthread_mutex_unlock(p->m->philo[p->id].fork_lock);
-		printf("%ld Philo %d fork is unlocked\n", clock_now(p), p->m->philo[p->id].id);
+		if (p->fork == 0 || p->m->philo[p->id].fork == 0)
+			return (true);
+		return (false);
 	}
 }
 
-void	lock_mutex(t_philo *p)
+void	take_forks(t_philo *p)
 {
-	pthread_mutex_lock(p->fork_lock);
 	p->fork = 1;
-	pthread_mutex_unlock(p->fork_lock);
-	printf("%ld Philo %d fork is locked\n", clock_now(p), p->id);
+	printf("%ld Philo %d took his fork\n", clock_now(p), p->id);
 	if (p->id == p->m->last_philo)
 	{
-		pthread_mutex_lock(p->m->philo[0].fork_lock);
+		printf("%ld Philo %d took philo %d's fork\n", clock_now(p), p->id, p->m->philo[0].id);	
 		p->m->philo[0].fork = 1;
-		printf("%ld Philo %d fork is locked\n", clock_now(p), p->m->philo[0].id);
-		pthread_mutex_unlock(p->m->philo[0].fork_lock);
 	}
 	else
 	{
-		pthread_mutex_lock(p->m->philo[p->id].fork_lock);
-		printf("%ld Philo %d fork is locked\n", clock_now(p), p->m->philo[p->id].id);
+		p->m->philo[p->id].fork = 1;
+		printf("%ld Philo %d took philo %d's fork\n", clock_now(p), p->id, p->m->philo[p->id].id);
 	}
 }
 

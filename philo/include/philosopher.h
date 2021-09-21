@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 15:20:33 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 21:07:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,7 @@ void			time_to_eat(t_philo *p);
 
 bool			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
-void			lock_mutex(t_philo *p);
-void			unlock_mutex(t_philo *p);
+void			take_forks(t_philo *p);
 
 /* UTILITIES */
 

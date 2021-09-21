@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:22:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/20 15:18:05 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/20 20:04:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	print_stack(t_philo *p)
 {
 	int	i;
 
-	i = 0;
 	pthread_mutex_lock(&p->m->print_stack);
+	i = 0;
 	printf("THIS IS PHILO %d\n", p->id);
 	while (i < p->m->settings->total_philo)
 	{
@@ -85,4 +85,3 @@ void	end_of_queue(t_philo *p)
 	}
 	p->m->queue[0] = tmp;
 }
-
