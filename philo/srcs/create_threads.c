@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 09:13:47 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 13:54:20 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:49:09 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_mutex_and_pointers(t_main *m, int total_philo)
 	while (i < total_philo)
 	{
 		pthread_mutex_destroy(m->philo[i].fork_lock);
+		free(m->philo[i].fork_lock);
 		i++;
 	}
 	pthread_mutex_destroy(&m->print_lock);
@@ -42,9 +43,8 @@ void	create_threads(t_main *m, int total_philo)
 		i++;
 	}
 	death_watch(m);
-	i = 0;
-	while (i < total_philo)
-		pthread_join(t_id[i++], NULL);
+	while (i > 0)
+		pthread_join(t_id[i--], NULL);
 	free_mutex_and_pointers(m, total_philo);
 	free(t_id);
 }

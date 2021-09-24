@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 08:29:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 11:01:17 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 14:57:48 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,4 @@ unsigned long	time_diff(struct timeval first, struct timeval second)
 	start = (first.tv_sec * 1000) + (first.tv_usec / 1000);
 	finish = (second.tv_sec * 1000) + (second.tv_usec / 1000);
 	return (ft_abs(start - finish));
-}
-
-long	get_time(struct timeval *time)
-{
-	struct timeval	tmp;
-
-	if (time == NULL)
-	{
-		gettimeofday(&tmp, NULL);
-		return ((tmp.tv_sec * 1000) + (tmp.tv_usec / 1000));
-	}
-	else
-		return ((time->tv_sec * 1000) + (time->tv_usec / 1000));
 }

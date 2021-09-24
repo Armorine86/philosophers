@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:37:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 13:22:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:17:07 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,10 @@ bool	philo_is_starving(t_main *m, struct timeval time, int i)
 		> (unsigned long)m->settings->time_die)
 	{
 		print_state(&m->philo[i], "died");
-		m->philo[i].state = s_dead;
 		m->game_over = 1;
 		return (true);
 	}
 	return (false);
-}
-
-bool	philos_are_full(t_main *m)
-{
-	int	i;
-
-	i = 0;
-	if (m->settings->meal_quota == 0)
-		return (false);
-	while (i < m->settings->total_philo)
-	{
-		if (m->philo[i].meal < m->settings->total_meals)
-			return (false);
-		i++;
-	}
-	return (true);
 }
 
 bool	check_meal_quota(t_main *m, int i)
@@ -57,9 +40,8 @@ bool	check_meal_quota(t_main *m, int i)
 		count += m->philo[i].meal;
 		i++;
 	}
-	if (count == total_meal)
+	if (count >= total_meal)
 	{
-		m->philo[i].state = s_filled;
 		m->game_over = 1;
 		return (true);
 	}
@@ -71,8 +53,7 @@ void	death_watch(t_main *m)
 	struct timeval	time;
 	int				i;
 
-	i = 0;
-	while (m->game_over == 0)
+	while (!m->game_over)
 	{
 		i = 0;
 		while (i < m->settings->total_philo)
@@ -81,12 +62,12 @@ void	death_watch(t_main *m)
 			gettimeofday(&time, NULL);
 			if (philo_is_starving(m, time, i))
 				break ;
+			i++;
 			if (check_meal_quota(m, i))
 			{
 				printf("All philos reached the meal quota!\n");
 				break ;
 			}
-			i++;
 		}
 	}
 }

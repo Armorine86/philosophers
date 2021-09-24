@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 13:39:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:14:19 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef enum e_state
 	s_eat,
 	s_sleep,
 	s_think,
-	s_dead,
-	s_filled,
 }	t_state;
 
 typedef struct s_settings
@@ -47,7 +45,6 @@ typedef struct s_philo
 	struct timeval	last_meal;
 	struct timeval	time;
 	struct s_main	*m;
-	long			starve;
 	int				priority;
 	int				meal;
 	int				fork;
@@ -96,8 +93,6 @@ void			drop_forks(t_philo *p);
 
 unsigned long	time_diff(struct timeval first, struct timeval second);
 void			sleep_timer(long milliseconds);
-long			get_time(struct timeval *time);
-long			get_time(struct timeval *time);
 
 /* UTILITIES */
 

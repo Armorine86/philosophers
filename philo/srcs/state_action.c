@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 12:30:42 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 15:14:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	prepare_to_eat(t_philo *p)
 	int	i;
 
 	i = p->m->settings->total_philo - 1;
-	while (true)
+	while (!p->m->game_over)
 	{
 		pthread_mutex_lock(&p->m->queue_lock);
 		if (p->id == p->m->queue[i] || p->id == p->m->queue[i - 1])
