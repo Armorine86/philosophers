@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:37:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 10:59:17 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 13:22:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,36 @@ bool	philos_are_full(t_main *m)
 
 bool	check_meal_quota(t_main *m, int i)
 {
+	int	total_meal;
+	int	count;
+	int	j;
+
+	j = 0;
+	count = 0;
+	total_meal = m->settings->total_meals * m->settings->total_philo;
 	if (m->settings->meal_quota == 0)
 		return (false);
-	if (m->philo[i].meal < m->settings->total_meals)
-		return (false);
-	return (true);
+	while (i < m->settings->total_philo)
+	{
+		count += m->philo[i].meal;
+		i++;
+	}
+	if (count == total_meal)
+	{
+		m->philo[i].state = s_filled;
+		m->game_over = 1;
+		return (true);
+	}
+	return (false);
 }
 
-// TODO Need to fix the death timer. Philos dies too quickly
 void	death_watch(t_main *m)
 {
 	struct timeval	time;
 	int				i;
 
 	i = 0;
-	usleep(100 * 1000);
-	while (!m->game_over)
+	while (m->game_over == 0)
 	{
 		i = 0;
 		while (i < m->settings->total_philo)
@@ -68,7 +82,10 @@ void	death_watch(t_main *m)
 			if (philo_is_starving(m, time, i))
 				break ;
 			if (check_meal_quota(m, i))
-				print_state(m->philo, "All philos reached the meal quota!");
+			{
+				printf("All philos reached the meal quota!\n");
+				break ;
+			}
 			i++;
 		}
 	}

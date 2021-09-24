@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 11:00:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 12:30:42 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ void	time_to_eat(t_philo *p)
 	p->last_meal = p->time;
 	end_of_queue(p);
 	p->meal++;
-	if (p->meal == p->m->settings->total_meals)
-	{
-		p->state = s_filled;
-		return ;
-	}	
 	sleep_timer(p->m->settings->time_eat);
 	drop_forks(p);
 	p->state = s_sleep;

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/15 08:30:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 13:59:54 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	free_all_exit(t_main *m)
 {
 	free(m->philo);
 	free(m->settings);
+	free(m->queue);
 	free(m);
 	exit(0);
 }

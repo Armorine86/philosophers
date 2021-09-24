@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 10:57:42 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 13:39:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,24 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_lock;
 	struct timeval	last_meal;
 	struct timeval	time;
+	struct s_main	*m;
 	long			starve;
 	int				priority;
 	int				meal;
 	int				fork;
 	int				id;
 	t_state			state;
-	struct s_main	*m;
 }	t_philo;
 
 typedef struct s_main
 {
-	struct timeval	clock;
 	int				game_over;
 	int				last_philo;
 	int				total_priority;
 	int				*queue;
-	t_settings		*settings;
 	t_philo			*philo;
+	t_settings		*settings;
+	struct timeval	clock;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print_lock;
 }	t_main;

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/10 15:16:16 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 12:53:32 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 		argv = split_argv(argv[0], &free_me);
 	count = get_parameters_count(argc, argv);
-	if (count < 4)
+	if (count < 4 || count > 5)
 		usage(argv[0]);
 	if (!check_args(argv, &error))
 		error_exit(main, error);
