@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/21 15:12:37 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 10:54:29 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ static bool	init_main_philo(t_main *m)
 	{
 		m->philo[i].fork_lock = ft_calloc(m->settings->total_philo,
 				sizeof(pthread_mutex_t));
+		gettimeofday(&m->philo[i].time, NULL);
 		pthread_mutex_init(m->philo[i].fork_lock, NULL);
+		m->philo[i].last_meal = m->philo[i].time;
 		m->philo[i].id = i + 1;
 		m->philo[i].priority = m->philo[i].id % 2;
 		m->philo[i].state = s_think;

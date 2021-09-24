@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:22:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/21 09:17:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 10:59:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	place_in_queue(t_main *m)
 
 void	end_of_queue(t_philo *p)
 {
-	int i;
-	int tmp;
+	int	i;
+	int	tmp;
 
 	i = p->m->settings->total_philo - 1;
 	tmp = p->m->queue[i];

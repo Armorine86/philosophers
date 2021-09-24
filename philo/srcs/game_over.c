@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:37:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/21 15:30:39 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 10:59:17 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 bool	philo_is_starving(t_main *m, struct timeval time, int i)
 {
-	if (time_diff(time, m->philo[i].last_meal) > (unsigned long)m->settings->time_die)
+	if (time_diff(time, m->philo[i].last_meal)
+		> (unsigned long)m->settings->time_die)
 	{
 		print_state(&m->philo[i], "died");
 		m->philo[i].state = s_dead;
@@ -26,7 +27,7 @@ bool	philo_is_starving(t_main *m, struct timeval time, int i)
 
 bool	philos_are_full(t_main *m)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (m->settings->meal_quota == 0)
@@ -47,22 +48,16 @@ bool	check_meal_quota(t_main *m, int i)
 	if (m->philo[i].meal < m->settings->total_meals)
 		return (false);
 	return (true);
-	// if (philos_are_full(m))
-	// {
-	// 	m->game_over = 1;
-	// 	return (true);
-	// }
-	// return (false);
 }
 
 // TODO Need to fix the death timer. Philos dies too quickly
 void	death_watch(t_main *m)
 {
-	struct timeval time;
-	int i;
+	struct timeval	time;
+	int				i;
 
 	i = 0;
-	usleep(50 * 1000);
+	usleep(100 * 1000);
 	while (!m->game_over)
 	{
 		i = 0;
@@ -71,7 +66,7 @@ void	death_watch(t_main *m)
 			usleep(50 * 1000);
 			gettimeofday(&time, NULL);
 			if (philo_is_starving(m, time, i))
-				break;
+				break ;
 			if (check_meal_quota(m, i))
 				print_state(m->philo, "All philos reached the meal quota!");
 			i++;

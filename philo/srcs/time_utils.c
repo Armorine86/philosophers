@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 08:29:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/21 14:06:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/24 11:01:17 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sleep_timer(long milliseconds)
 {
-	struct timeval time;
-	struct timeval time_a;
+	struct timeval	time;
+	struct timeval	time_a;
 
 	gettimeofday(&time, NULL);
 	gettimeofday(&time_a, NULL);
@@ -43,7 +43,7 @@ long	get_time(struct timeval *time)
 	if (time == NULL)
 	{
 		gettimeofday(&tmp, NULL);
-		return((tmp.tv_sec * 1000) + (tmp.tv_usec / 1000));
+		return ((tmp.tv_sec * 1000) + (tmp.tv_usec / 1000));
 	}
 	else
 		return ((time->tv_sec * 1000) + (time->tv_usec / 1000));
