@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:37:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/27 14:24:51 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:06:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	check_meal_quota(t_main *m, int total_philo)
 
 void	*death_watch(void *arg)
 {
-	t_philo *p;
+	t_philo	*p;
 
 	p = (t_philo *)arg;
 	while (!p->m->game_over)

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/27 14:17:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:06:15 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_main
 	t_philo			*philo;
 	t_settings		*settings;
 	struct timeval	clock;
-	pthread_mutex_t death_lock;
+	pthread_mutex_t	death_lock;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print_lock;
 }	t_main;
@@ -85,11 +85,11 @@ void			prepare_to_eat(t_philo *p);
 void			time_to_sleep(t_philo *p);
 void			time_to_eat(t_philo *p);
 void			*death_watch(void *arg);
-void 			check_meal_quota(t_main *m, int total_philo);
+void			check_meal_quota(t_main *m, int total_philo);
 
 /* ROUTINE UTILS */
 
-bool 			check_if_starving(t_philo *p);
+bool			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
 void			take_forks(t_philo *p);
 void			drop_forks(t_philo *p);
@@ -105,7 +105,5 @@ void			sleep_timer(long milliseconds);
 void			error_exit(t_main *m, int error);
 void			free_all_exit(t_main *m);
 void			free_tab(char **argv);
-
-void			print_stack(t_philo *p);
 
 #endif
