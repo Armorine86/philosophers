@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/27 14:21:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:23:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	take_forks(t_philo *p)
 	pthread_mutex_lock(p->fork_lock);
 	p->fork = 1;
 	print_state(p, "has taken a fork");
+	if (p->m->settings->total_philo < 2)
+		return ;
 	if (p->id == p->m->last_philo)
 	{
 		pthread_mutex_lock(p->m->philo[0].fork_lock);
