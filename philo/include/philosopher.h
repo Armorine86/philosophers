@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 15:14:19 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/27 14:17:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 # include <unistd.h>
 # include "utils.h"
 
+# define UL unsigned long
+
 typedef enum e_state
 {
 	s_eat,
 	s_sleep,
 	s_think,
+	s_full,
 }	t_state;
 
 typedef struct s_settings
@@ -45,6 +48,7 @@ typedef struct s_philo
 	struct timeval	last_meal;
 	struct timeval	time;
 	struct s_main	*m;
+	int				full;
 	int				priority;
 	int				meal;
 	int				fork;
@@ -61,6 +65,7 @@ typedef struct s_main
 	t_philo			*philo;
 	t_settings		*settings;
 	struct timeval	clock;
+	pthread_mutex_t death_lock;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print_lock;
 }	t_main;
@@ -72,7 +77,6 @@ void			create_threads(t_main *m, int total_main);
 
 /* ROUTINE */
 
-void			*game_over(void	*arg);
 void			place_in_queue(t_main *m);
 void			end_of_queue(t_philo *p);
 void			print_state(t_philo *p, char *str);
@@ -80,14 +84,16 @@ void			*meal_routine(void	*main);
 void			prepare_to_eat(t_philo *p);
 void			time_to_sleep(t_philo *p);
 void			time_to_eat(t_philo *p);
-void			death_watch(t_main *m);
+void			*death_watch(void *arg);
+void 			check_meal_quota(t_main *m, int total_philo);
 
 /* ROUTINE UTILS */
 
-bool			check_if_starving(t_philo *p);
+bool 			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
 void			take_forks(t_philo *p);
 void			drop_forks(t_philo *p);
+void			fork_unlock(t_philo *p);
 
 /* TIME UTILITIES */
 

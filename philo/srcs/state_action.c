@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 15:14:15 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/27 14:06:12 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,9 @@
 void	time_to_eat(t_philo *p)
 {
 	print_state(p, "is eating");
-	gettimeofday(&p->time, NULL);
-	p->last_meal = p->time;
-	end_of_queue(p);
-	p->meal++;
-	sleep_timer(p->m->settings->time_eat);
 	drop_forks(p);
 	p->state = s_sleep;
+	sleep_timer(p->m->settings->time_eat);
 }
 
 void	time_to_sleep(t_philo *p)
@@ -40,10 +36,10 @@ void	prepare_to_eat(t_philo *p)
 	while (!p->m->game_over)
 	{
 		pthread_mutex_lock(&p->m->queue_lock);
-		if (p->id == p->m->queue[i] || p->id == p->m->queue[i - 1])
+		if (fork_available(p) && p->id == p->m->queue[i])
 		{
 			take_forks(p);
-			p->state = s_eat;
+			fork_unlock(p);
 			pthread_mutex_unlock(&p->m->queue_lock);
 			break ;
 		}
