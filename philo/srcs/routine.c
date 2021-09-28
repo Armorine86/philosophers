@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/28 11:27:07 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/28 15:45:11 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ void	*meal_routine(void *arg)
 		else if (p->state == s_sleep)
 			time_to_sleep(p);
 	}
-	//drop_forks(p);
 	return (NULL);
 }

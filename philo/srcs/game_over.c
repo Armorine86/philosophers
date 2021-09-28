@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:37:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/28 11:36:14 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/28 15:45:28 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ bool	philo_are_full(t_main *m, int total_philo)
 	return (false);
 }
 
-void check_meal_quota(t_main *m, int total_philo)
+void	check_meal_quota(t_main *m, int total_philo)
 {
 	if (m->settings->meal_quota == 0)
-		return;
+		return ;
 	while (!m->game_over)
 	{
 		if (philo_are_full(m, total_philo))
