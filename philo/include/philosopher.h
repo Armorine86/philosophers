@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/27 15:20:28 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:25:25 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "utils.h"
-
-# define UL unsigned long
 
 typedef enum e_state
 {
@@ -45,9 +43,8 @@ typedef struct s_settings
 typedef struct s_philo
 {
 	pthread_mutex_t	*fork_lock;
-	struct timeval	last_meal;
-	struct timeval	time;
 	struct s_main	*m;
+	long			last_meal;
 	int				full;
 	int				priority;
 	int				meal;
@@ -62,9 +59,9 @@ typedef struct s_main
 	int				last_philo;
 	int				total_priority;
 	int				*queue;
+	long			clock;
 	t_philo			*philo;
 	t_settings		*settings;
-	struct timeval	clock;
 	pthread_mutex_t	death_lock;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print_lock;
@@ -77,28 +74,28 @@ void			create_threads(t_main *m, int total_main);
 
 /* ROUTINE */
 
-void			place_in_queue(t_main *m);
-void			end_of_queue(t_philo *p);
-void			print_state(t_philo *p, char *str);
 void			*meal_routine(void	*main);
+void			*death_watch(void *arg);
 void			prepare_to_eat(t_philo *p);
 void			time_to_sleep(t_philo *p);
 void			time_to_eat(t_philo *p);
-void			*death_watch(void *arg);
-void			check_meal_quota(t_main *m, int total_philo);
 
 /* ROUTINE UTILS */
 
 bool			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
+void			check_meal_quota(t_main *m, int total_philo);
+void			print_state(t_philo *p, char *str);
+void			end_of_queue(t_philo *p);
+void			place_in_queue(t_main *m);
 void			take_forks(t_philo *p);
 void			drop_forks(t_philo *p);
 void			fork_unlock(t_philo *p);
 
 /* TIME UTILITIES */
 
-unsigned long	time_diff(struct timeval first, struct timeval second);
-void			sleep_timer(long milliseconds);
+long			time_now(void);
+void			sleep_timer(long param);
 
 /* UTILITIES */
 

@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/21 14:44:38 by mmondell         ###   ########.fr        #
+#    Updated: 2021/09/28 10:54:35 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME 			= 	philosopher
 
 ## ----- CHOOSE COMPILER AND FLAGS ----- ##
 CC				= 	gcc
-CFLAGS			= 	-Wall -Wextra -Werror -g
+CFLAGS			= 	-Wall -Wextra -Werror -O2
 
 ## ----- PATH TO FOLDERS ----- ##
 SRCS_DIR		= 	srcs/

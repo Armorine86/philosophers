@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/27 15:20:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:16:36 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,8 @@ static bool	init_main_philo(t_main *m)
 	{
 		m->philo[i].fork_lock = ft_calloc(m->settings->total_philo,
 				sizeof(pthread_mutex_t));
-		gettimeofday(&m->philo[i].time, NULL);
 		pthread_mutex_init(m->philo[i].fork_lock, NULL);
-		m->philo[i].last_meal = m->philo[i].time;
+		m->philo[i].last_meal = time_now();
 		m->philo[i].id = i + 1;
 		m->philo[i].priority = m->philo[i].id % 2;
 		m->philo[i].state = s_think;
@@ -61,12 +60,10 @@ static bool	init_settings(t_main *m, char **argv, int arg_count)
 
 t_main	*init_structs(char **argv, int count)
 {
-	struct timeval	time;
 	t_main			*m;
 
 	m = ft_calloc(1, sizeof(t_main));
-	gettimeofday(&time, NULL);
-	m->clock = time;
+	m->clock = time_now();
 	pthread_mutex_init(&m->print_lock, NULL);
 	pthread_mutex_init(&m->queue_lock, NULL);
 	pthread_mutex_init(&m->death_lock, NULL);

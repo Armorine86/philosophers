@@ -6,41 +6,11 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:22:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 10:59:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:28:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
-
-/*void	print_stack(t_philo *p)
-{
-	int	i;
-
-	pthread_mutex_lock(&p->m->print_stack);
-	i = 0;
-	printf("THIS IS PHILO %d\n", p->id);
-	while (i < p->m->settings->total_philo)
-	{
-		printf("STACK[%d]  %d\n", i, p->m->queue[i]);
-		i++;
-	}
-	ft_putchar_fd(1, '\n');
-	pthread_mutex_unlock(&p->m->print_stack);
-}*/
-
-bool	already_in_queue(t_philo *p)
-{
-	int	i;
-
-	i = 0;
-	while (i < p->m->settings->total_philo)
-	{
-		if (p->m->queue[i] == p->id)
-			return (true);
-		i++;
-	}
-	return (false);
-}
 
 void	place_in_queue(t_main *m)
 {

@@ -6,32 +6,25 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 08:29:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 15:34:32 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:25:19 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	sleep_timer(long milliseconds)
+void	sleep_timer(long param)
 {
-	struct timeval	time;
-	struct timeval	time_a;
+	long	time;
 
-	gettimeofday(&time, NULL);
-	gettimeofday(&time_a, NULL);
-	while (time_diff(time, time_a) < (unsigned long)milliseconds)
-	{
-		gettimeofday(&time_a, NULL);
-		usleep(200);
-	}
+	time = time_now();
+	while ((time_now() - time) < param)
+		;
 }
 
-unsigned long	time_diff(struct timeval first, struct timeval second)
+long	time_now(void)
 {
-	unsigned long	start;
-	unsigned long	finish;
+	struct timeval	time;
 
-	start = (first.tv_sec * 1000) + (first.tv_usec / 1000);
-	finish = (second.tv_sec * 1000) + (second.tv_usec / 1000);
-	return (ft_abs(start - finish));
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
