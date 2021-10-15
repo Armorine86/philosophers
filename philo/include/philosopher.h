@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/28 11:25:25 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 13:56:41 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef enum e_state
 	s_sleep,
 	s_think,
 	s_full,
+	s_dead,
 }	t_state;
 
 typedef struct s_settings

@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/28 11:09:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 14:06:34 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	time_to_eat(t_philo *p)
 {
 	print_state(p, "is eating");
+	sleep_timer(p->m->settings->time_eat);
+	p->meal++;
 	drop_forks(p);
 	p->state = s_sleep;
-	sleep_timer(p->m->settings->time_eat);
 }
 
 void	time_to_sleep(t_philo *p)
