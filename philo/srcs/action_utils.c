@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 14:03:20 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/10/15 14:15:16 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	take_forks(t_philo *p)
 
 void	drop_forks(t_philo *p)
 {
-	//pthread_mutex_lock(p->fork_lock);
-	//p->meal++;
 	p->fork = 0;
 	pthread_mutex_unlock(p->fork_lock);
 	if (p->id == p->m->last_philo)
