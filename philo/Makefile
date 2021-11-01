@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/09/28 10:54:35 by mmondell         ###   ########.fr        #
+#    Updated: 2021/11/01 12:18:49 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 #*#######################################################
 
 ## -----  NAME OF THE PROGRAMM ----- ##
-NAME 			= 	philosopher
+NAME 			= 	philo
 
 ## ----- NAME OF THE BONUS PART ----- ##
 #*B_NAME			= 

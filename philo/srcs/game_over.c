@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:37:48 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 14:06:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/01 12:25:03 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 bool	philo_is_starving(t_philo *p)
 {
+	pthread_mutex_lock(&p->m->print_lock);
 	if ((time_now() - p->last_meal) > p->m->settings->time_die)
+	{
+		pthread_mutex_unlock(&p->m->print_lock);
 		return (true);
+	}
+	pthread_mutex_unlock(&p->m->print_lock);
 	return (false);
 }
 
@@ -24,7 +29,7 @@ bool	philo_are_full(t_main *m, int total_philo)
 	int	i;
 
 	i = 0;
-	while (m->philo[i].meal == m->settings->total_meals)
+	while (m->philo[i].meal >= m->settings->total_meals)
 		i++;
 	if (i == total_philo)
 		return (true);
@@ -41,7 +46,7 @@ void	check_meal_quota(t_main *m, int total_philo)
 		if (philo_are_full(m, total_philo))
 		{
 			m->game_over = 1;
-			printf("\e[95m\e[4mAll Philos Reached The Meal Quota!\n");
+			printf("\e[95m\e[4mAll Philos Reached The Meal Quota!\e[0m\n");
 		}
 	}
 }
