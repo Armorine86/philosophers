@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:08:52 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 14:50:40 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:33:12 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ t_main	*init_structs(char **argv, int count)
 	pthread_mutex_init(&m->print_lock, NULL);
 	pthread_mutex_init(&m->queue_lock, NULL);
 	pthread_mutex_init(&m->meal_lock, NULL);
-	pthread_mutex_init(&m->death_lock, NULL);
 	if (!m || !init_settings(m, argv, count) || !init_main_philo(m))
 		error_exit(m, 2);
 	m->queue = ft_calloc(m->settings->total_philo, sizeof(int));
