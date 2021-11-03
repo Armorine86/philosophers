@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/24 13:59:54 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:06:57 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,20 @@ void	free_tab(char **tab)
 void	error_exit(t_main *p, int error)
 {
 	if (error == 1)
-		ft_putstr_fd("INVALID ARGUMENT", 2);
+	{
+		ft_putstr_fd("INVALID ARGUMENT\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	else if (error == 2)
-		ft_putstr_fd("MALLOC FAILED", 2);
+		ft_putstr_fd("MALLOC FAILED\n", 2);
 	else if (error == 3)
 	{
-		ft_putstr_fd("THREAD MALLOC FAILED", 2);
+		ft_putstr_fd("THREAD MALLOC FAILED\n", 2);
 		free_all_exit(p);
 	}
 	else if (error == 4)
 	{
-		ft_putstr_fd("THREAD CREATION FAILED", 2);
+		ft_putstr_fd("THREAD CREATION FAILED\n", 2);
 		free_all_exit(p);
 	}
 }

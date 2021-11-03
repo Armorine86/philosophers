@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 10:50:56 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:47:02 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_lock;
 	struct s_main	*m;
 	long			last_meal;
+	int				dead;
 	int				full;
 	int				priority;
 	int				meal;
@@ -63,11 +64,12 @@ typedef struct s_main
 	int				game_over;
 	int				last_philo;
 	int				total_priority;
+	int				satiated;
 	int				*queue;
 	long			clock;
 	t_philo			*philo;
 	t_settings		*settings;
-	pthread_mutex_t	death_lock;
+	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print_lock;
 }	t_main;
@@ -87,10 +89,11 @@ void			time_to_eat(t_philo *p);
 
 /* ROUTINE UTILS */
 
+bool			philo_is_dead(t_philo *p);
 bool			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
-void			check_meal_quota(t_main *m, int total_philo);
-void			print_state(t_philo *p, char *str);
+bool			meal_quota_reached(t_philo *p);
+int				print_state(t_philo *p, char *str);
 void			end_of_queue(t_philo *p);
 void			place_in_queue(t_main *m);
 void			take_forks(t_philo *p);
