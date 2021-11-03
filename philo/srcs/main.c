@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/07 09:05:11 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:48:59 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ int	main(int argc, char **argv)
 		argv = split_argv(argv[0], &free_me);
 	count = get_parameters_count(argc, argv);
 	if (count < 4 || count > 5)
+	{
 		usage(argv[0]);
+		exit(EXIT_FAILURE);
+	}
 	if (!check_args(argv, &error))
 		error_exit(m, error);
 	m = init_structs(argv, count);

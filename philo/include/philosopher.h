@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 13:56:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 10:50:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "utils.h"
+
+# define DEAD "\e[31m\e[40mdied\e[0m 💀"
+# define PRINT_MSG "\e[36m%-3ld\e[0m || \e[32mphilo \e[33m%d \e[32m%s\e[0m\n"
+# define QUOTA_MSG "\e[95m\e[4mAll Philos Reached The Meal Quota!\e[0m\n"
 
 typedef enum e_state
 {
