@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/10/15 14:15:16 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:04:45 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	fork_available(t_philo *p)
 {
+	if (philo_is_dead(p))
+		return (false);
 	if (p->id == p->m->last_philo)
 	{
 		if (p->fork == 0 && p->m->philo[0].fork == 0)

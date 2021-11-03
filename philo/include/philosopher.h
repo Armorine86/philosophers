@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 13:47:02 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 15:01:35 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_lock;
 	struct s_main	*m;
 	long			last_meal;
-	int				dead;
 	int				full;
 	int				priority;
 	int				meal;
@@ -103,7 +102,7 @@ void			fork_unlock(t_philo *p);
 /* TIME UTILITIES */
 
 long			time_now(void);
-void			sleep_timer(long param);
+void			sleep_timer(t_philo *p, long param);
 
 /* UTILITIES */
 
