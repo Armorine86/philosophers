@@ -6,13 +6,13 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 10:48:59 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 13:00:50 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-bool	check_args(char **argv, int *error)
+int	check_args(char **argv)
 {
 	int	i;
 	int	j;
@@ -20,16 +20,15 @@ bool	check_args(char **argv, int *error)
 	i = 0;
 	while (argv[i])
 	{
+		if (argv[i] <= 0)
+			return (false);
 		j = 0;
 		if (argv[i][j] == '+')
 			j++;
 		while (argv[i][j])
 		{
 			if (!ft_isdigit(argv[i][j]))
-			{
-				*error = 1;
 				return (false);
-			}
 			j++;
 		}
 		i++;
@@ -81,11 +80,9 @@ int	main(int argc, char **argv)
 	t_main		*m;
 	int			count;	
 	int			free_me;
-	int			error;
 
 	m = NULL;
 	free_me = 0;
-	error = 0;
 	argv++;
 	if (argc == 2)
 		argv = split_argv(argv[0], &free_me);
@@ -95,8 +92,8 @@ int	main(int argc, char **argv)
 		usage(argv[0]);
 		exit(EXIT_FAILURE);
 	}
-	if (!check_args(argv, &error))
-		error_exit(m, error);
+	if (!check_args(argv))
+		error_exit(m, 1);
 	m = init_structs(argv, count);
 	count = ft_atoi(argv[0]);
 	create_threads(m, count);
