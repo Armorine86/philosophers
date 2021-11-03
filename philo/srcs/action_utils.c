@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 15:04:45 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/03 16:28:56 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 bool	fork_available(t_philo *p)
 {
 	if (philo_is_dead(p))
+		return (false);
+	if (meal_quota_reached(p))
 		return (false);
 	if (p->id == p->m->last_philo)
 	{
@@ -51,7 +53,6 @@ void	take_forks(t_philo *p)
 		p->m->philo[0].fork = 1;
 		print_state(p, "has taken a fork");
 		p->state = s_eat;
-		end_of_queue(p);
 	}
 	else
 	{
@@ -59,7 +60,6 @@ void	take_forks(t_philo *p)
 		p->m->philo[p->id].fork = 1;
 		print_state(p, "has taken a fork");
 		p->state = s_eat;
-		end_of_queue(p);
 	}
 }
 
