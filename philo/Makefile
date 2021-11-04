@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/11/04 08:50:56 by mmondell         ###   ########.fr        #
+#    Updated: 2021/11/04 12:27:43 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME 			= 	philo
 
 ## ----- CHOOSE COMPILER AND FLAGS ----- ##
 CC				= 	gcc
-CFLAGS			= 	-Wall -Wextra -Werror -O2
+CFLAGS			= 	-Wall -Wextra -Werror
 
 ## ----- PATH TO FOLDERS ----- ##
 SRCS_DIR		= 	srcs/
@@ -76,7 +76,12 @@ NORMAL 			= \033[0m
 #LIBFT			= $(MAKE) bonus -C $(LIBFT_DIR)
 
 ## ----- ALL ACTION DEPENDENCIES AND RECIPE FOR MAIN PROGRAM ----- ##
+all: CFLAGS += -O2
 all: obj $(NAME)
+	@echo "$(GREEN)Compilation Completed Successfully$(NORMAL)"
+
+debug: CFLAGS += -g
+debug: obj $(NAME)
 	@echo "$(GREEN)Compilation Completed Successfully$(NORMAL)"
 
 $(OBJ_DIR)%.o:%.c

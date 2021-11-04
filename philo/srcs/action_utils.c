@@ -6,31 +6,16 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:51:38 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 08:45:23 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 12:49:33 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-bool	fork_available(t_philo *p)
-{
-	if (philo_is_dead(p))
-		return (false);
-	if (p->id == p->m->last_philo)
-	{
-		if (p->fork == 0 && p->m->philo[0].fork == 0)
-			return (true);
-	}
-	else
-	{
-		if (p->fork == 0 && p->m->philo[p->id].fork == 0)
-			return (true);
-	}
-	return (false);
-}
-
 void	fork_unlock(t_philo *p)
 {
+	if (philo_is_dead(p))
+		return ;
 	pthread_mutex_unlock(p->fork_lock);
 	if (p->id == p->m->last_philo)
 		pthread_mutex_unlock(p->m->philo[0].fork_lock);
@@ -40,6 +25,8 @@ void	fork_unlock(t_philo *p)
 
 void	take_forks(t_philo *p)
 {
+	if (philo_is_dead(p))
+		return ;
 	pthread_mutex_lock(p->fork_lock);
 	p->fork = 1;
 	print_state(p, "has taken a fork");
@@ -65,6 +52,8 @@ void	take_forks(t_philo *p)
 
 void	drop_forks(t_philo *p)
 {
+	if (philo_is_dead(p))
+		return ;
 	p->fork = 0;
 	pthread_mutex_unlock(p->fork_lock);
 	if (p->id == p->m->last_philo)

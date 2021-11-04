@@ -6,11 +6,28 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 08:22:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/09/28 11:28:41 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 09:41:46 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+bool	fork_available(t_philo *p)
+{
+	if (philo_is_dead(p))
+		return (false);
+	if (p->id == p->m->last_philo)
+	{
+		if (p->fork == 0 && p->m->philo[0].fork == 0)
+			return (true);
+	}
+	else
+	{
+		if (p->fork == 0 && p->m->philo[p->id].fork == 0)
+			return (true);
+	}
+	return (false);
+}
 
 void	place_in_queue(t_main *m)
 {
