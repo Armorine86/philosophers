@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 15:09:22 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:18:12 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	free_mutex_and_pointers(t_main *m, int total_philo)
 	pthread_mutex_destroy(&m->queue_lock);
 	pthread_mutex_destroy(&m->meal_lock);
 	pthread_mutex_destroy(&m->death_lock);
-
 }
 
 void	free_all_exit(t_main *m)
