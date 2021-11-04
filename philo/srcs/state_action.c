@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 12:44:42 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 14:50:05 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	prepare_to_eat(t_philo *p)
 		if (fork_available(p) && p->id == p->m->queue[i])
 		{
 			take_forks(p);
-			fork_unlock(p);
 			pthread_mutex_unlock(&p->m->queue_lock);
 			break ;
 		}
