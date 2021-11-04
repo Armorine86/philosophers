@@ -6,11 +6,29 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/03 09:55:45 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 13:06:57 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:09:22 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+void	free_mutex_and_pointers(t_main *m, int total_philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < total_philo)
+	{
+		pthread_mutex_destroy(m->philo[i].fork_lock);
+		free(m->philo[i].fork_lock);
+		i++;
+	}
+	pthread_mutex_destroy(&m->print_lock);
+	pthread_mutex_destroy(&m->queue_lock);
+	pthread_mutex_destroy(&m->meal_lock);
+	pthread_mutex_destroy(&m->death_lock);
+
+}
 
 void	free_all_exit(t_main *m)
 {

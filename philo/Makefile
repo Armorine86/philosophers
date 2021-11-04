@@ -6,7 +6,7 @@
 #    By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/31 08:51:26 by mmondell          #+#    #+#              #
-#    Updated: 2021/11/04 15:06:15 by mmondell         ###   ########.fr        #
+#    Updated: 2021/11/04 15:11:29 by mmondell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,8 @@ INCLUDE_DIR		= 	include/
 UTIL_DIR		= 	utility_functions/
 
 ## ----- SOURCE FILES ----- ##
-SRCS_FILES		= 	main.c init_structs.c utils.c routine.c state_action.c print_state.c \
-					action_utils.c queue.c create_threads.c time_utils.c
+SRCS_FILES		= 	main.c init_structs.c utils.c routine.c print_state.c \
+					forks.c queue.c create_threads.c time_utils.c
 
 UTIL_FILES		= 	malloc_utils.c string_utils.c ft_split.c ft_atoi.c 
 ## ----- BONUS SOURCE FILES ----- ##

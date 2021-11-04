@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 09:20:27 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:14:59 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "utils.h"
 
 # define DEAD "\e[31m\e[40mdied\e[0m 💀"
 # define PRINT_MSG "\e[36m%-3ld\e[0m || \e[32mphilo \e[33m%d \e[32m%s\e[0m\n"
@@ -90,11 +89,11 @@ void			time_to_eat(t_philo *p);
 
 /* ROUTINE UTILS */
 
+int				print_state(t_philo *p, char *str);
 bool			philo_is_dead(t_philo *p);
 bool			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
 void			meal_quota_reached(t_main *m);
-int				print_state(t_philo *p, char *str);
 void			end_of_queue(t_philo *p);
 void			place_in_queue(t_main *m);
 void			take_forks(t_philo *p);
@@ -106,10 +105,24 @@ void			fork_unlock(t_philo *p);
 long			time_now(void);
 void			sleep_timer(t_philo *p, long param);
 
-/* UTILITIES */
+/* FREE/ERRORS UTILITIES */
 
 void			error_exit(t_main *m, int error);
+void			free_mutex_and_pointers(t_main *m, int total_philo);
 void			free_all_exit(t_main *m);
 void			free_tab(char **argv);
+
+/* MAIN UTILITIESS */
+
+int				ft_atoi(const char *str);
+int				ft_isdigit(int c);
+char			**ft_split(const char *s, char c);
+void			ft_putchar_fd(char c, int fd);
+void			ft_putstr_fd(char *s, int fd);
+void			*ft_calloc(size_t ele, size_t size);
+void			*ft_memset(void *s, int c, size_t n);
+size_t			ft_strlcpy(char *dst, const char *src, size_t size);
+size_t			ft_strlen(const char *s);
+
 
 #endif
