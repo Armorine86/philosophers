@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 13:29:21 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 16:35:37 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 09:27:24 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 
 void	time_to_eat(t_philo *p)
 {
-	if (meal_quota_reached(p))
-		return ;
 	if (print_state(p, "is eating"))
 		return ;
+	sleep_timer(p, p->m->settings->time_eat);
 	pthread_mutex_lock(&p->m->meal_lock);
 	p->meal++;
-	if (p->meal >= p->m->settings->total_meals)
+	if (p->meal == p->m->settings->total_meals)	
 		p->m->satiated++;
-	sleep_timer(p, p->m->settings->time_eat);
 	pthread_mutex_unlock(&p->m->meal_lock);
 	drop_forks(p);
 	p->state = s_sleep;

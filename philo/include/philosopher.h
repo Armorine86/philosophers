@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/08 15:44:20 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 15:01:35 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 09:20:27 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef struct s_main
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	queue_lock;
 	pthread_mutex_t	print_lock;
+	pthread_mutex_t	death_lock;
+
 }	t_main;
 
 /* MAIN */
@@ -91,7 +93,7 @@ void			time_to_eat(t_philo *p);
 bool			philo_is_dead(t_philo *p);
 bool			check_if_starving(t_philo *p);
 bool			fork_available(t_philo *p);
-bool			meal_quota_reached(t_philo *p);
+void			meal_quota_reached(t_main *m);
 int				print_state(t_philo *p, char *str);
 void			end_of_queue(t_philo *p);
 void			place_in_queue(t_main *m);
