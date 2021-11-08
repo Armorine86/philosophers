@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 15:30:13 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:32:23 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ int	get_parameters_count(int argc, char **argv)
 	return (i);
 }
 
-void	usage(char *argv)
+void	usage(void)
 {
 	printf("\033[31m ------------------- \n");
 	printf("| MISSING ARGUMENTS |\n");
 	printf(" ------------------- \033[0m\n\n");
 	printf("\033[33m At least 4 arguments are needed\033[34m\n\n");
-	printf("%s", argv);
+	printf("./philo");
 	printf(" [total_Philos] [Time to die]");
 	printf(" [Time to eat] [Time to sleep]");
 	printf(" [(OPTIONAL) Number of meals]\033[0m\n");
@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 	count = get_parameters_count(argc, argv);
 	if (count < 4 || count > 5)
 	{
-		usage(argv[0]);
+		usage();
 		exit(EXIT_FAILURE);
 	}
 	if (!check_args(argv))
