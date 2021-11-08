@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/08 09:51:49 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/08 12:14:32 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	time_to_eat(t_philo *p)
 void	time_to_sleep(t_philo *p)
 {
 	if (print_state(p, "is sleeping"))
-		return ;	
+		return ;
 	sleep_timer(p, p->m->settings->time_sleep);
 	p->state = s_think;
 	if (print_state(p, "is thinking"))
