@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 13:54:41 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/03 13:06:37 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/04 15:30:13 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	check_args(char **argv)
 	i = 0;
 	while (argv[i])
 	{
-		if (argv[i] < 0)
+		if (ft_atoi(argv[i]) <= 0)
 			return (false);
 		j = 0;
 		if (argv[i][j] == '+')

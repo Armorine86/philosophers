@@ -6,7 +6,7 @@
 /*   By: mmondell <mmondell@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 09:23:24 by mmondell          #+#    #+#             */
-/*   Updated: 2021/11/04 15:26:50 by mmondell         ###   ########.fr       */
+/*   Updated: 2021/11/08 09:14:50 by mmondell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	time_to_eat(t_philo *p)
 	sleep_timer(p, p->m->settings->time_eat);
 	pthread_mutex_lock(&p->m->meal_lock);
 	p->meal++;
+	p->last_meal = time_now();
 	if (p->meal == p->m->settings->total_meals)
 		p->m->satiated++;
 	pthread_mutex_unlock(&p->m->meal_lock);
@@ -29,7 +30,7 @@ void	time_to_eat(t_philo *p)
 void	time_to_sleep(t_philo *p)
 {
 	if (print_state(p, "is sleeping"))
-		return ;
+		return ;	
 	sleep_timer(p, p->m->settings->time_sleep);
 	p->state = s_think;
 	if (print_state(p, "is thinking"))
